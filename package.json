@@ -1,0 +1,27 @@
+{
+  "name": "aslyon1_api",
+  "version": "1.0.0",
+  "description": "A RestFul API for HTTP Server and ASLyon1's Mobile App.",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mysql": "^2.16.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "http",
+    "rest",
+    "api",
+    "android",
+    "kotlin",
+    "nodejs"
+  ],
+  "author": "REFFAY Tristan, CHASTAGNIER Carlos, BENZAIED Sofiane",
+  "license": "ISC"
+}
