@@ -33,8 +33,23 @@ exports.login = function (req, res, next) {
                 row = result[key];
                 console.log(row.firstname);
             });
-            if(row != null) { res.json(row); }
-            else { res.send('Adresse email ou mot de passe incorrect.')}
+            res.json(row);
+        }
+    });
+}
+
+exports.signup = function (req, res, next) {
+    var lastname = req.body.lastname;
+    var firstname = req.body.firstname;
+    var dateOfBirth = req.body.dateofbirth;
+    var email = req.body.email;
+    var password = req.body.password;
+    var phoneNumber = req.body.phonenumber;
+    connectionOnline.query("INSERT INTO user (lastname, firstname, dateOfBirth, email, password, phoneNumber) VALUES ('" + lastname + "', '" + firstname + "', '" + dateOfBirth + "', '" + email + "', '" + password + "', '" + phoneNumber + "')", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            console.log("User has inserted into table ! :)");
         }
     });
 }
