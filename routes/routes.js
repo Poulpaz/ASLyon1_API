@@ -15,5 +15,5 @@ module.exports = function(app) {
     //login - connexion
     app.route('/api/login').get(userController.login);
     //sign up - inscription
-    app.route('/api/sigup').post(userController.signup);
+    app.route('/api/signup').post(userController.signup);
 }
