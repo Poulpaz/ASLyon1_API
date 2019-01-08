@@ -2,6 +2,7 @@ module.exports = function(app) {
     console.log("route");
 
     var userController = require('../controller/userController');
+    var eventController = require('../controller/eventController');
 
     /* -- routes test - debug -- */
     app.route('/debugMode').get(function (req, res, next) {
@@ -18,4 +19,8 @@ module.exports = function(app) {
     app.route('/api/signup').post(userController.signup);
     //change user's token
     app.route('/api/changeToken').put(userController.changeUserToken);
+
+    /* -- Event routes -- */
+    //liste des events
+    app.route('/api/events').get(eventController.events);
 }
