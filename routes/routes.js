@@ -16,4 +16,6 @@ module.exports = function(app) {
     app.route('/api/login').get(userController.login);
     //sign up - inscription
     app.route('/api/signup').post(userController.signup);
+    //change user's token
+    app.route('/api/changeToken').put(userController.changeUserToken);
 }
