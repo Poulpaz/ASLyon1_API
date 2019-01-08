@@ -23,7 +23,7 @@ exports.users = function(req, res, next) {
 
 exports.signIn = function (req, res, next) {
     var email = req.body.email;
-    var password = req.body.pasword;
+    var password = req.body.password;
     var row;
     connectionOnline.query("SELECT * FROM user WHERE email=" + email + " AND password=" + password + " LIMIT 1", function (err, result, fields) {
         if (err) {
