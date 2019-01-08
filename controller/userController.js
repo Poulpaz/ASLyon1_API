@@ -33,7 +33,8 @@ exports.login = function (req, res, next) {
                 row = result[key];
                 console.log(row.firstname);
             });
-            res.json(row);
+            if(row != null) { res.json(row); }
+            else { res.json("error : 1") }
         }
     });
 }
