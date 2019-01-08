@@ -20,3 +20,20 @@ exports.users = function(req, res, next) {
         }
     });
 }
+
+exports.signIn = function (req, res, next) {
+    var email = req.body.email;
+    var password = req.body.pasword;
+    var row;
+    connectionOnline.query("SELECT * FROM user WHERE email=" + email + " AND password=" + password + " LIMIT 1", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            Object.keys(result).forEach(function (key) {
+                row = result[key];
+                console.log(row.firstname);
+            });
+            res.json(row);
+        }
+    });
+}

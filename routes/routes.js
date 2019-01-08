@@ -10,4 +10,5 @@ module.exports = function(app) {
     });
 
     app.route('/api/users').get(userController.users);
+    app.route('/api/signIn').get(userController.signIn);
 }
