@@ -34,7 +34,7 @@ exports.login = function (req, res, next) {
                 console.log(row.firstname);
             });
             if(row != null) { res.json(row); }
-            else { res.json("error : 1") }
+            else { res.json('{"error": 1}') }
         }
     });
 }
