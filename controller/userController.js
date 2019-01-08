@@ -25,7 +25,7 @@ exports.signIn = function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
     var row;
-    connectionOnline.query("SELECT * FROM user WHERE email=" + email + " AND password=" + password + " AND LIMIT 1", function (err, result, fields) {
+    connectionOnline.query("SELECT * FROM user WHERE email='" + email + "' AND password='" + password + "'", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
