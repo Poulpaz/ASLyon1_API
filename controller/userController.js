@@ -21,7 +21,7 @@ exports.users = function(req, res, next) {
     });
 }
 
-exports.signIn = function (req, res, next) {
+exports.login = function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
     var row;
@@ -33,7 +33,8 @@ exports.signIn = function (req, res, next) {
                 row = result[key];
                 console.log(row.firstname);
             });
-            res.json(row);
+            if(row != null) { res.json(row); }
+            else { res.send('Adresse email ou mot de passe incorrect.')}
         }
     });
 }
