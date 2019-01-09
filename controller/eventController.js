@@ -23,7 +23,6 @@ exports.events = function(req, res, next) {
 
 exports.event = function(req, res, next) {
     var idevent = req.body.idEvent;
-    var row;
     connectionOnline.query("SELECT * FROM event WHERE idEvent=" + idevent + " LIMIT 1", function (err, result, fields) {
         if (err) {
             throw err;
@@ -32,7 +31,7 @@ exports.event = function(req, res, next) {
                 row = result[key];
                 console.log(row.title);
             });
-            res.json(row);
+            res.json(result);
         }
     });
 }
