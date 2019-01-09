@@ -28,6 +28,10 @@ exports.event = function(req, res, next) {
         if(err) {
             throw err;
         } else {
+            Object.keys(result).forEach(function(key) {
+                var row = result[key];
+                console.log(row.title);
+            });
             res.json(row);
         }
     });
