@@ -24,6 +24,8 @@ module.exports = function(app) {
     /* -- Event routes -- */
     //liste des evenements
     app.route('/api/events').get(eventController.events);
+    //recuperer les details evenement
+    app.route('/api/event/:idEvent').get(eventController.event);
 
     /* -- Tournament routes -- */
     //liste des tournois
