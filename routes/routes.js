@@ -4,6 +4,7 @@ module.exports = function(app) {
     var userController = require('../controller/userController');
     var eventController = require('../controller/eventController');
     var tournamentController = require('../controller/tournamentController');
+    var offerController = require('../controller/offerController');
 
     /* -- routes test - debug -- */
     app.route('/debugMode').get(function (req, res, next) {
@@ -30,8 +31,12 @@ module.exports = function(app) {
     /* -- Tournament routes -- */
     //liste des tournois
     app.route('/api/tournaments').get(tournamentController.tournaments);
+    //recuperer les details tournois
+    app.route('/api/tournament/:idTournament').get(tournamentController.tournament);
 
     /* -- Offer routes -- */
     //liste des offres
-    
+    app.route('/api/offers').get(offerController.offers);
+    //recuperer les details offre
+    app.route('/api/offer/:idOffer').get(offerController.offer);
 }

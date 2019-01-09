@@ -7,8 +7,8 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-exports.tournaments = function(req, res, next) {
-    connectionOnline.query("SELECT * FROM tournament", function(err, result, fields) {
+exports.offers = function(req, res, next) {
+    connectionOnline.query("SELECT * FROM offer", function(err, result, fields) {
         if(err) {
             throw err;
         } else {
@@ -21,10 +21,10 @@ exports.tournaments = function(req, res, next) {
     });
 }
 
-exports.tournament = function(req, res, next) {
-    var idtournament = req.params.idTournament;
+exports.offer = function(req, res, next) {
+    var idoffer = req.params.ifOffer;
     var row;
-    connectionOnline.query("SELECT * FROM tournament WHERE idTournament=" + idtournament + " LIMIT 1", function (err, result, fields) {
+    connectionOnline.query("SELECT * FROM event WHERE ifOffer=" + idoffer + " LIMIT 1", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
