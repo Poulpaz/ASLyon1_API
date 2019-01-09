@@ -3,6 +3,7 @@ module.exports = function(app) {
 
     var userController = require('../controller/userController');
     var eventController = require('../controller/eventController');
+    var tournamentController = require('../controller/tournamentController');
 
     /* -- routes test - debug -- */
     app.route('/debugMode').get(function (req, res, next) {
@@ -21,6 +22,10 @@ module.exports = function(app) {
     app.route('/api/changeToken').put(userController.changeUserToken);
 
     /* -- Event routes -- */
-    //liste des events
+    //liste des evenements
     app.route('/api/events').get(eventController.events);
+
+    /* -- Tournament routes -- */
+    //liste des tournois
+    app.route('/api/tournaments').get(tournamentController.tournaments);
 }
