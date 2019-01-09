@@ -25,7 +25,7 @@ exports.login = function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
     var row;
-    connectionOnline.query("SELECT * FROM user WHERE email='" + email + "' AND password='" + password + "'", function (err, result, fields) {
+    connectionOnline.query("SELECT token FROM user WHERE email='" + email + "' AND password='" + password + "'", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
