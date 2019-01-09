@@ -30,4 +30,8 @@ module.exports = function(app) {
     /* -- Tournament routes -- */
     //liste des tournois
     app.route('/api/tournaments').get(tournamentController.tournaments);
+
+    /* -- Offer routes -- */
+    //liste des offres
+    
 }
