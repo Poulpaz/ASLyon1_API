@@ -15,7 +15,7 @@ module.exports = function(app) {
     //liste des utilisateurs
     app.route('/api/users').get(userController.users);
     //login - connexion
-    app.route('/api/login').get(userController.login);
+    app.route('/api/login').post(userController.login);
     //sign up - inscription
     app.route('/api/signup').post(userController.signup);
     //change user's token
