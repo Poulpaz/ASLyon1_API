@@ -20,3 +20,15 @@ exports.events = function(req, res, next) {
         }
     });
 }
+
+exports.event = function(req, res, next) {
+    var idEvent = req.params.eventId;
+    var row;
+    connectionOnline.query("SELECT * FROM event WHERE idEvent=" + idEvent + "", function(err, result, fields) {
+        if(err) {
+            throw err;
+        } else {
+            res.json(row);
+        }
+    });
+}
