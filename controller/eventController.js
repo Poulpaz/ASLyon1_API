@@ -22,14 +22,14 @@ exports.events = function(req, res, next) {
 }
 
 exports.event = function(req, res, next) {
-    var idEvent = req.body.idEvent;
+    var idevent = req.body.idEvent;
     var row;
-    connectionOnline.query("SELECT * FROM event WHERE idEvent=" + idEvent + "", function(err, result, fields) {
-        if(err) {
+    connectionOnline.query("SELECT * FROM event WHERE idEvent=" + idevent + " LIMIT 1", function (err, result, fields) {
+        if (err) {
             throw err;
         } else {
-            Object.keys(result).forEach(function(key) {
-                var row = result[key];
+            Object.keys(result).forEach(function (key) {
+                row = result[key];
                 console.log(row.title);
             });
             res.json(row);
