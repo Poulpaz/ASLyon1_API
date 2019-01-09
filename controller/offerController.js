@@ -22,9 +22,9 @@ exports.offers = function(req, res, next) {
 }
 
 exports.offer = function(req, res, next) {
-    var idoffer = req.params.ifOffer;
+    var idoffer = req.params.idOffer;
     var row;
-    connectionOnline.query("SELECT * FROM event WHERE ifOffer=" + idoffer + " LIMIT 1", function (err, result, fields) {
+    connectionOnline.query("SELECT * FROM event WHERE idOffer=" + idoffer + " LIMIT 1", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
