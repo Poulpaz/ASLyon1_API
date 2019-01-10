@@ -7,6 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
+//liste des événements
 exports.events = function(req, res, next) {
     connectionOnline.query("SELECT * FROM event", function(err, result, fields) {
         if(err) {
@@ -20,6 +21,7 @@ exports.events = function(req, res, next) {
     });
 }
 
+//récupérer un événement
 exports.event = function(req, res, next) {
     var idevent = req.params.idEvent;
     var row;
@@ -35,7 +37,7 @@ exports.event = function(req, res, next) {
     });
 }
 
-//ajout d'un événement
+//ajouter un événement
 exports.addEvent = function (req, res, next) {
     var title = req.body.title;
     var date = req.body.date;
@@ -52,7 +54,7 @@ exports.addEvent = function (req, res, next) {
     });
 }
 
-//mise à jour d'un événement
+//mettre à jour un événement
 exports.updateEvent = function (req, res, next) {
     var idEvent = req.body.idevent;
     var title = req.body.title;
@@ -70,7 +72,7 @@ exports.updateEvent = function (req, res, next) {
     });
 }
 
-//suppression d'un événement
+//supprimer un événement
 exports.deleteEvent = function (req, res, next) {
     var idEvent = req.body.idevent;
     connectionOnline.query("DELETE FROM event WHERE idEvent=" + idEvent + "", function (err, result, fields) {

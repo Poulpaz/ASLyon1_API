@@ -40,7 +40,7 @@ exports.login = function (req, res, next) {
     });
 }
 
-//changement du token de l'utilisateur
+//changer le token d'un l'utilisateur
 exports.changeUserToken = function (req, res, next) {
     var token = req.headers.token;
     var newtoken = req.body.newtoken;
@@ -74,7 +74,7 @@ exports.signup = function (req, res, next) {
     });
 }
 
-//mise à jour de l'utilisateur
+//mettre à jour un utilisateur
 exports.updateUser = function (req, res, next) {
     var token = req.headers.token;
     var lastname = req.body.lastname;
@@ -93,7 +93,7 @@ exports.updateUser = function (req, res, next) {
     });
 }
 
-//suppression de l'utilisateur
+//supprimer un utilisateur
 exports.deleteUser = function (req, res, next) {
     var token = req.headers.token;
     connectionOnline.query("DELETE FROM user WHERE token=" + token + "", function (err, result, fields) {

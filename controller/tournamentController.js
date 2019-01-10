@@ -7,6 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
+//liste des tournois
 exports.tournaments = function(req, res, next) {
     connectionOnline.query("SELECT * FROM tournament", function(err, result, fields) {
         if(err) {
@@ -20,7 +21,7 @@ exports.tournaments = function(req, res, next) {
         }
     });
 }
-
+//récupérer un tournoi
 exports.tournament = function(req, res, next) {
     var idtournament = req.params.idTournament;
     var row;
@@ -37,7 +38,7 @@ exports.tournament = function(req, res, next) {
     });
 }
 
-//ajout d'un tournoi
+//ajouter un tournoi
 exports.addTournament = function (req, res, next) {
     var title = req.body.title;
     var nbTeam = req.body.nbteam;
@@ -56,7 +57,7 @@ exports.addTournament = function (req, res, next) {
     });
 }
 
-//mise à jour d'un tournoi
+//mettre à jour un tournoi
 exports.updateTournament = function (req, res, next) {
     var idTournament = req.body.idtournament;
     var title = req.body.title;
@@ -76,7 +77,7 @@ exports.updateTournament = function (req, res, next) {
     });
 }
 
-//suppression d'un tournoi
+//supprimer un tournoi
 exports.deleteTournament = function (req, res, next) {
     var idTournament = req.body.idtournament;
     connectionOnline.query("DELETE FROM tournament WHERE idTournament=" + idTournament + "", function (err, result, fields) {
@@ -84,7 +85,7 @@ exports.deleteTournament = function (req, res, next) {
             throw err;
         } else {
             console.log("Tournament has been deleted.");
-            res.json({ message: "Votre tournoi à bien été supprimé." });d
+            res.json({ message: "Votre tournoi à bien été supprimé." });
         }
     });
 }

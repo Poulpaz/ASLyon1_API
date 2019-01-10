@@ -7,6 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
+//liste des offres promotionnelles
 exports.offers = function(req, res, next) {
     connectionOnline.query("SELECT * FROM offer", function(err, result, fields) {
         if(err) {
@@ -21,6 +22,7 @@ exports.offers = function(req, res, next) {
     });
 }
 
+//récupérer une offre promotionnelle
 exports.offer = function(req, res, next) {
     var idoffer = req.params.idOffer;
     var row;
@@ -33,6 +35,56 @@ exports.offer = function(req, res, next) {
                 console.log(row.title);
             });
             res.json(row);
+        }
+    });
+}
+
+//ajouter une offre promotionnelle
+exports.addOffer = function (req, res, next) {
+    var title = req.body.title;
+    var date = req.body.date;
+    var teams = req.body.teams;
+    var price = req.body.price;
+    var link = req.body.link;
+    var description = req.body.description;
+    connectionOnline.query("INSERT INTO offer (title, date, teams, price, link, description) VALUES ('" + title + "', '" + date + "', '" + teams + "', '" + price + "', '" + link + "', '" + description + "')", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            console.log("Offer has been added");
+            res.json({ message: "Offre promotionnelle ajoutée avec succès." });
+        }
+    });
+}
+
+//mettre à jour une offre promotionnelle
+exports.updateOffer = function (req, res, next) {
+    var idOffer = req.body.idoffer;
+    var title = req.body.title;
+    var date = req.body.date;
+    var teams = req.body.teams;
+    var price = req.body.price;
+    var link = req.body.link;
+    var description = req.body.description;
+    connectionOnline.query("UPDATE offer SET title='" + title + "', date='" + date + "', teams='" + teams + "', price='" + price + "', link='" + link + "', description='" + description + "' WHERE idOffer='" + idOffer + "'", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            console.log("Offer has been updated.");
+            res.json({ message: "Les informations de l'offre promotionnelle ont été modifiées avec succès." });
+        }
+    });
+}
+
+//supprimer une offre promotionnelle
+exports.deleteOffer = function (req, res, next) {
+    var idOffer = req.body.idoffer;
+    connectionOnline.query("DELETE FROM offer WHERE idOffer=" + idOffer + "", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            console.log("Offer has been deleted.");
+            res.json({ message: "Votre offre promotionnelle à bien été supprimée." });
         }
     });
 }
