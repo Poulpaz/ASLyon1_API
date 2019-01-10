@@ -55,4 +55,10 @@ module.exports = function(app) {
     app.route('/api/offers').get(offerController.offers);
     //recuperer les details offre
     app.route('/api/offer/:idOffer').get(offerController.offer);
+    //ajouter un tournoi
+    app.route('/api/newOffer').post(offerController.addOffer);
+    //modifier un tournoi
+    app.route('/api/changeOfferSpecifies').put(offerController.updateOffer);
+    //supprimer un tournoi
+    app.route('/api/removeOffer').delete(offerController.deleteOffer);
 }
