@@ -33,7 +33,6 @@ exports.login = function (req, res, next) {
         } else {
             Object.keys(result).forEach(function (key) {
                 row = result[key];
-                console.log(row.firstname);
             });
             if(row != null) { res.json({ message: "User " + row.firstname + " exists in database." }); }
             else { res.json({ error: "User " + row.firstname + " doesn't exist." }); }
