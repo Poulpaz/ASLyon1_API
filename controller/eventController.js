@@ -60,7 +60,7 @@ exports.updateEvent = function (req, res, next) {
     var place = req.body.place;
     var price = req.body.price;
     var description = req.body.description;
-    connectionOnline.query("UPDATE event SET title='" + title + "', date='" + date + "', place='" + place + "', price='" + price + "', description='" + description + " WHERE idEvent='" + idEvent + "'", function (err, result, fields) {
+    connectionOnline.query("UPDATE event SET title='" + title + "', date='" + date + "', place='" + place + "', price='" + price + "', description='" + description + "' WHERE idEvent='" + idEvent + "'", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
