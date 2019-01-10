@@ -35,7 +35,7 @@ exports.login = function (req, res, next) {
                 row = result[key];
             });
             if(row != null) { res.json(row); }
-            else { res.json({ error: "User " + row.firstname + " doesn't exist." }); }
+            else { res.json({ error: 1 }); }
         }
     });
 }
