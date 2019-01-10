@@ -65,7 +65,7 @@ exports.updateEvent = function (req, res, next) {
             throw err;
         } else {
             console.log("Event has been updated.");
-            res.json({ message: "Les informations ont été modifiées avec succès." });
+            res.json({ message: "Les informations de l'événement ont été modifiées avec succès." });
         }
     });
 }
