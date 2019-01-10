@@ -66,7 +66,7 @@ exports.updateTournament = function (req, res, next) {
     var place = req.body.place;
     var description = req.body.description;
     var price = req.body.price;
-    connectionOnline.query("UPDATE event SET title='" + title + "', nbTeam='" + nbTeam + "', nbPlayersTeam='" + nbPlayersTeam + "', date='" + date + "', place='" + place + "', description='" + description + "', price='" + price + "' WHERE idTournament='" + idTournament + "'", function (err, result, fields) {
+    connectionOnline.query("UPDATE tournament SET title='" + title + "', nbTeam='" + nbTeam + "', nbPlayersTeam='" + nbPlayersTeam + "', date='" + date + "', place='" + place + "', description='" + description + "', price='" + price + "' WHERE idTournament='" + idTournament + "'", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
@@ -84,7 +84,7 @@ exports.deleteTournament = function (req, res, next) {
             throw err;
         } else {
             console.log("Tournament has been deleted.");
-            res.json({ message: "Votre tournoi à bien été supprimé." });
+            res.json({ message: "Votre tournoi à bien été supprimé." });d
         }
     });
 }
