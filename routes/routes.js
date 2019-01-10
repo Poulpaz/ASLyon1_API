@@ -43,6 +43,12 @@ module.exports = function(app) {
     app.route('/api/tournaments').get(tournamentController.tournaments);
     //recuperer les details tournois
     app.route('/api/tournament/:idTournament').get(tournamentController.tournament);
+    //ajouter un tournoi
+    app.route('/api/newTournament').post(tournamentController.addTournament);
+    //modifier un tournoi
+    app.route('/api/changeTournamentSpecifies').put(tournamentController.updateTournament);
+    //supprimer un tournoi
+    app.route('/api/removeTournament').delete(tournamentController.deleteTournament);
 
     /* -- Offer routes -- */
     //liste des offres
