@@ -35,7 +35,7 @@ exports.login = function (req, res, next) {
                 row = result[key];
             });
             if(row != null) { res.json(row); }
-            else { res.json({ error: 1 }); }
+            else { res.json({ error: "Informations incorrectes, veuillez réessayer." }); }
         }
     });
 }
@@ -50,7 +50,7 @@ exports.changeUserToken = function (req, res, next) {
             throw err;
         } else {
             console.log("User's token has been updated.");
-            res.json({ message: "User's token has been updated." });
+            res.json({ message: "Le token de l'utilisateur a été mis à jour." });
         }
     });
 }
@@ -69,7 +69,7 @@ exports.signup = function (req, res, next) {
             throw err;
         } else {
             console.log("User has been signed up.");
-            res.json({ message: "User has been signed up." });
+            res.json({ message: "Inscription effectuée avec succès." });
         }
     });
 }
@@ -88,7 +88,7 @@ exports.updateUser = function (req, res, next) {
             throw err;
         } else {
             console.log("User has been updated.");
-            res.json({ message: "User has been updated." });
+            res.json({ message: "Vos informations personnelles ont bien été mises à jour." });
         }
     });
 }
@@ -101,7 +101,7 @@ exports.deleteUser = function (req, res, next) {
             throw err;
         } else {
             console.log("User has been deleted.");
-            res.json({ message: "User has been deleted." });
+            res.json({ message: "Votre compte à bien été supprimé." });
         }
     });
 }
