@@ -102,6 +102,6 @@ exports.deleteUser = function (req, res, next) {
         } else {
             console.log("User has been deleted.");
             res.json({ message: "Votre compte à bien été supprimé." });
-        }n
+        }
     });
 }

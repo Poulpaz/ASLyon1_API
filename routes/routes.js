@@ -13,24 +13,30 @@ module.exports = function(app) {
     });
 
     /* -- User routes -- */
-    //liste des utilisateurs
+    //liste des comptes existants
     app.route('/api/users').get(userController.users);
     //login - connexion
     app.route('/api/login').post(userController.login);
     //sign up - inscription
     app.route('/api/signup').post(userController.signup);
-    //change user's token
+    //modifier le token d'un compte
     app.route('/api/changeToken').put(userController.changeUserToken);
-    //update user
+    //modifier un compte
     app.route('/api/changeUserSpecifies').put(userController.updateUser);
-    //delete user
+    //supprimer un compte
     app.route('/api/removeUser').delete(userController.deleteUser);
 
     /* -- Event routes -- */
-    //liste des evenements
+    //lister les événements
     app.route('/api/events').get(eventController.events);
-    //recuperer les details evenement
+    //récupérer les détails d'un événement
     app.route('/api/event/:idEvent').get(eventController.event);
+    //ajouter un événement
+    app.route('/api/newEvent').post(eventController.addEvent);
+    //modifier un événement
+    app.route('/api/changeEventSpecifies').put(eventController.updateEvent);
+    //supprimer un événement
+    app.route('/api/removeEvent').delete(eventController.deleteEvent);
 
     /* -- Tournament routes -- */
     //liste des tournois
