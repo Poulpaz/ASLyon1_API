@@ -34,7 +34,7 @@ exports.login = function (req, res, next) {
             Object.keys(result).forEach(function (key) {
                 row = result[key];
             });
-            if(row != null) { res.json({ message: "User " + row.firstname + " exists in database." }); }
+            if(row != null) { res.json(row); }
             else { res.json({ error: "User " + row.firstname + " doesn't exist." }); }
         }
     });
