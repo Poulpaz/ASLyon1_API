@@ -21,6 +21,10 @@ module.exports = function(app) {
     app.route('/api/signup').post(userController.signup);
     //change user's token
     app.route('/api/changeToken').put(userController.changeUserToken);
+    //update user
+    app.route('/api/changeUserSpecifies').put(userController.updateUser);
+    //delete user
+    app.route('/api/removeUser').delete(userController.deleteUser);
 
     /* -- Event routes -- */
     //liste des evenements

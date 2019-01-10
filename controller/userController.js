@@ -7,6 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
+//liste des utilisateurs
 exports.users = function(req, res, next) {
     connectionOnline.query("SELECT * FROM user", function(err, result, fields) {
         if(err) {
@@ -21,6 +22,7 @@ exports.users = function(req, res, next) {
     });
 }
 
+//connexion d'un utilisateur
 exports.login = function (req, res, next) {
     var email = req.body.email;
     var password = req.body.password;
@@ -33,12 +35,28 @@ exports.login = function (req, res, next) {
                 row = result[key];
                 console.log(row.firstname);
             });
-            if(row != null) { res.json(row); }
-            else { res.send({ error: 1 }) }
+            if(row != null) { res.json({ message: "User " + row.firstname + " exists in database." }); }
+            else { res.json({ error: "User " + row.firstname + " doesn't exist." }); }
         }
     });
 }
 
+//changement du token de l'utilisateur
+exports.changeUserToken = function (req, res, next) {
+    var token = req.headers.token;
+    var newtoken = req.body.newtoken;
+
+    connectionOnline.query("UPDATE user SET token='" + newtoken + "' WHERE token=" + token + "", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            console.log("User's token has been updated.");
+            res.json({ message: "User's token has been updated." });
+        }
+    });
+}
+
+//inscription d'un utilisateur - ajout
 exports.signup = function (req, res, next) {
     var token = req.headers.token;
     var lastname = req.body.lastname;
@@ -51,20 +69,40 @@ exports.signup = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("User has inserted into table ! :)");
+            console.log("User has been signed up.");
+            res.json({ message: "User has been signed up." });
         }
     });
 }
 
-exports.changeUserToken = function (req, res, next) {
-    var token = req.headers.token
-    var newtoken = req.body.newtoken;
-
-    connectionOnline.query("UPDATE user SET token='" + newtoken + "' WHERE token=" + token + "", function (err, result, fields) {
+//mise à jour de l'utilisateur
+exports.updateUser = function (req, res, next) {
+    var token = req.headers.token;
+    var lastname = req.body.lastname;
+    var firstname = req.body.firstname;
+    var dateOfBirth = req.body.dateOfBirth;
+    var email = req.body.email;
+    var password = req.body.password;
+    var phoneNumber = req.body.phoneNumber;
+    connectionOnline.query("UPDATE user SET lastname='" + lastname + "', firstname='" + firstname + "', dateOfBirth='" + dateOfBirth + "', email='" + email + "', password='" + password + "', phoneNumber='" + phoneNumber + "' WHERE token='" + token + "'", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
-            console.log("User has updated into table ! :)");
+            console.log("User has been updated.");
+            res.json({ message: "User has been updated." });
+        }
+    });
+}
+
+//suppression de l'utilisateur
+exports.deleteUser = function (req, res, next) {
+    var token = req.headers.token;
+    connectionOnline.query("DELETE FROM user WHERE token=" + token + "", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            console.log("User has been deleted.");
+            res.json({ message: "User has been deleted." });
         }
     });
 }
