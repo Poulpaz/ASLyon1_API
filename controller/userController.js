@@ -79,10 +79,10 @@ exports.updateUser = function (req, res, next) {
     var token = req.headers.token;
     var lastname = req.body.lastname;
     var firstname = req.body.firstname;
-    var dateOfBirth = req.body.dateOfBirth;
+    var dateOfBirth = req.body.dateofbirth;
     var email = req.body.email;
     var password = req.body.password;
-    var phoneNumber = req.body.phoneNumber;
+    var phoneNumber = req.body.phonenumber;
     connectionOnline.query("UPDATE user SET lastname='" + lastname + "', firstname='" + firstname + "', dateOfBirth='" + dateOfBirth + "', email='" + email + "', password='" + password + "', phoneNumber='" + phoneNumber + "' WHERE token='" + token + "'", function (err, result, fields) {
         if (err) {
             throw err;
@@ -102,6 +102,6 @@ exports.deleteUser = function (req, res, next) {
         } else {
             console.log("User has been deleted.");
             res.json({ message: "Votre compte à bien été supprimé." });
-        }
+        }n
     });
 }
