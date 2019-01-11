@@ -43,9 +43,9 @@ exports.login = function (req, res, next) {
 //changer le token d'un l'utilisateur
 exports.changeUserToken = function (req, res, next) {
     var token = req.headers.token;
-    var email = req.body.email;
+    var newToken = req.headers.newtoken;
 
-    connectionOnline.query("UPDATE user SET token='" + token + "' WHERE email=" + email + "", function (err, result, fields) {
+    connectionOnline.query("UPDATE user SET token='" + newToken + "' WHERE token=" + token + "", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
@@ -57,13 +57,14 @@ exports.changeUserToken = function (req, res, next) {
 
 //inscription d'un utilisateur - ajout
 exports.signup = function (req, res, next) {
+    var token = req.headers.token
     var lastname = req.body.lastname;
     var firstname = req.body.firstname;
     var dateOfBirth = req.body.dateofbirth;
     var email = req.body.email;
     var password = req.body.password;
     var phoneNumber = req.body.phonenumber;
-    connectionOnline.query("INSERT INTO user (lastname, firstname, dateOfBirth, email, password, phoneNumber) VALUES ('" + lastname + "', '" + firstname + "', '" + dateOfBirth + "', '" + email + "', '" + password + "', '" + phoneNumber + "')", function (err, result, fields) {
+    connectionOnline.query("INSERT INTO user (token, lastname, firstname, dateOfBirth, email, password, phoneNumber) VALUES ('" + token + "', '" + lastname + "', '" + firstname + "', '" + dateOfBirth + "', '" + email + "', '" + password + "', '" + phoneNumber + "')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
