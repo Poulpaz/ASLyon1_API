@@ -57,7 +57,7 @@ exports.changeUserToken = function (req, res, next) {
 
 //inscription d'un utilisateur - ajout
 exports.signup = function (req, res, next) {
-    var token = req.headers.token
+    var token = req.headers.token;
     var lastname = req.body.lastname;
     var firstname = req.body.firstname;
     var dateOfBirth = req.body.dateofbirth;
