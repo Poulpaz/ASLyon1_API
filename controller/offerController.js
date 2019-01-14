@@ -43,11 +43,11 @@ exports.offer = function(req, res, next) {
 exports.addOffer = function (req, res, next) {
     var title = req.body.title;
     var date = req.body.date;
-    var teams = req.body.teams;
+    var nbParticipants = req.body.nbParticipants;
     var price = req.body.price;
     var link = req.body.link;
     var description = req.body.description;
-    connectionOnline.query("INSERT INTO offer (title, date, teams, price, link, description) VALUES ('" + title + "', '" + date + "', '" + teams + "', '" + price + "', '" + link + "', '" + description + "')", function (err, result, fields) {
+    connectionOnline.query("INSERT INTO offer (title, date, nbParticipants, price, link, description) VALUES ('" + title + "', '" + date + "', '" + nbParticipants + "', '" + price + "', '" + link + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
@@ -62,11 +62,11 @@ exports.updateOffer = function (req, res, next) {
     var idOffer = req.body.idoffer;
     var title = req.body.title;
     var date = req.body.date;
-    var teams = req.body.teams;
+    var nbParticipants = req.body.nbParticipants;
     var price = req.body.price;
     var link = req.body.link;
     var description = req.body.description;
-    connectionOnline.query("UPDATE offer SET title='" + title + "', date='" + date + "', teams='" + teams + "', price='" + price + "', link='" + link + "', description='" + description + "' WHERE idOffer='" + idOffer + "'", function (err, result, fields) {
+    connectionOnline.query("UPDATE offer SET title='" + title + "', date='" + date + "', nbParticipants='" + nbParticipants + "', price='" + price + "', link='" + link + "', description='" + description + "' WHERE idOffer='" + idOffer + "'", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
