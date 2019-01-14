@@ -64,5 +64,5 @@ module.exports = function(app) {
     app.route('/api/removeOffer').delete(offerController.deleteOffer);
 
 
-    app.route('/api/xml').get(actuController.listActuRss);
+    app.route('https://as.univ-lyon1.fr/feed/').get(actuController.listActuRss);
 }
