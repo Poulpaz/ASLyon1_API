@@ -1,18 +1,16 @@
-var request = require('request');
-var xml2js = require('xml2js');
-
-var parser = new xml2js.Parser();
+//var request = require('request');
+let Parser = require('rss-parser');
+let parser = new Parser();
 
 /* Get RSS Flux from AS Lyon 1 */
 exports.listActuRss = function(req, res) {
-    request.get('https://as.univ-lyon1.fr/feed/', function(error, response, body) {
-        //sendJsonResponse(res, 200, body);
-        var json = parser.parseString(body);
-        res.send(json);
-    });
-};
-
-var sendJsonResponse = function(res, status, content) {
-    res.status(status);
-    res.json(content);
+    (async () => {
+ 
+        let feed = await parser.parseURL('https://as.univ-lyon1.fr/feed/');
+        console.log(feed.title);
+       
+        feed.items.forEach(item => {
+          console.log(item.title + ':' + item.link)
+        });
+      })();
 };
