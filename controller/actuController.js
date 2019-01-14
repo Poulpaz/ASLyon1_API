@@ -13,4 +13,5 @@ exports.listActuRss = function(req, res) {
           console.log(item.title + ':' + item.link)
         });
       })();
+    res.json(feed);
 };
