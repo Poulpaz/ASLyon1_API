@@ -5,6 +5,7 @@ module.exports = function(app) {
     var eventController = require('../controller/eventController');
     var tournamentController = require('../controller/tournamentController');
     var offerController = require('../controller/offerController');
+    var actuController = require('../controller/actuController');
 
     /* -- routes test - debug -- */
     app.route('/debugMode').get(function (req, res, next) {
@@ -61,4 +62,7 @@ module.exports = function(app) {
     app.route('/api/changeOfferSpecifies').put(offerController.updateOffer);
     //supprimer un tournoi
     app.route('/api/removeOffer').delete(offerController.deleteOffer);
+
+
+    app.route('/api/xml').get(actuController.listActuRss);
 }
