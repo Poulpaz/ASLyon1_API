@@ -4,14 +4,15 @@ let parser = new Parser();
 
 /* Get RSS Flux from AS Lyon 1 */
 exports.listActuRss = function(req, res) {
+    var feed;
     (async () => {
  
-        let feed = await parser.parseURL('https://as.univ-lyon1.fr/feed/');
+        feed = await parser.parseURL('https://as.univ-lyon1.fr/feed/');
         console.log(feed.title);
        
         feed.items.forEach(item => {
           console.log(item.title + ':' + item.link)
         });
       })();
-    res.json(feed);
+    res.json(feed.items);
 };
