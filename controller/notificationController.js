@@ -18,7 +18,7 @@ function notificationEvent(eventTitle, idEvent) {
       body: eventTitle
     },
     data: {
-      idEvent: idEvent
+      idEvent: String(idEvent)
     }
   };
   

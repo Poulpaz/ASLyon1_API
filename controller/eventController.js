@@ -15,9 +15,6 @@ exports.events = function(req, res, next) {
         if(err) {
             throw err;
         } else {
-            Object.keys(result).forEach(function(key) {
-                var row = result[key];
-            });
             res.json(result);
         }
     });
