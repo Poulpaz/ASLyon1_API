@@ -12,6 +12,7 @@ var topic = "aslyon";
 
 //notification evenements
 function notificationEvent(eventTitle, idEvent) {
+  console.log(eventTitle + " " + idEvent);
   var payload = {
     notification: {
       title: "Nouvel évènement",
