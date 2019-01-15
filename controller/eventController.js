@@ -53,12 +53,12 @@ function notificationEvent() {
 
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
-    var title = req.body.title;
+    var title = req.body.title.replace(/'/i, '\'');
     var date = req.body.date;
     var place = req.body.place;
     var price = req.body.price;
     var description = req.body.description;
-    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES (\'" + title + "\', \'" + date + "\', \'" + place + "\', \'" + price + "\', \'" + description + "\')", function (err, result, fields) {
+    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
