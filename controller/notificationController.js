@@ -27,3 +27,5 @@ function notificationEvent() {
       console.log("Error sending message:", error);
     });
 }
+
+module.exports = {notificationEvent}
