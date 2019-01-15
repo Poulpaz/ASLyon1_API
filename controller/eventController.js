@@ -101,5 +101,5 @@ exports.deleteEvent = function (req, res, next) {
 }
 
 function replaceSpecialCharacters(chn) {
-    return chn.replace("'", "\'").replace('"', "\"").replace("*", "\*").replace("+", "\+").replace(":", "\:").replace(";", "\;");
+    return chn.replace("'", "\'").replace('"', "\"");
 }
