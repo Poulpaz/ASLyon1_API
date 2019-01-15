@@ -52,7 +52,7 @@ function notificationEvent() {
 }
 
 function replaceSpecialCharacters(chn) {
-    return chn.replace("'", "\'");
+    chn.replace("'", "\'");
 }
 
 //ajouter un événement
