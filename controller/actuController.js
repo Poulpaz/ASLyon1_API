@@ -6,9 +6,6 @@ let parser = new Parser();
 exports.listActuRss = function(req, res) {
     (async () => {
         feed = await parser.parseURL('https://as.univ-lyon1.fr/feed/');
-        feed.items.forEach(item => {
-          console.log(item.title + ':' + item.link)
-        });
         res.json(feed.items);
     })();
 };
