@@ -51,7 +51,7 @@ exports.addEvent = function (req, res, next) {
             throw err;
         } else {
             console.log("Event has been added");
-            notificationController.notificationEvent()
+            notificationController.notificationEvent(title);
             res.json({ message: "Evénement ajouté avec succès." });
         }
     });

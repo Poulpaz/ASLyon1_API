@@ -9,11 +9,11 @@ admin.initializeApp({
 });
 
 //notification evenements
-function notificationEvent() {
+function notificationEvent(eventTitle) {
   var payload = {
     notification: {
       title: "Nouvel évènement",
-      body: "The NASDAQ climbs for the second day. Closes up 0.60%."
+      body: eventTitle
     }
   };
   
