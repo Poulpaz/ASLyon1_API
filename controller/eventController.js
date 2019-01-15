@@ -7,6 +7,8 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
+var notificationController = require('../notificationController');
+
 //liste des événements
 exports.events = function(req, res, next) {
     connectionOnline.query("SELECT * FROM event", function(err, result, fields) {
@@ -49,6 +51,7 @@ exports.addEvent = function (req, res, next) {
             throw err;
         } else {
             console.log("Event has been added");
+            notificationController.notificationEvent()
             res.json({ message: "Evénement ajouté avec succès." });
         }
     });
