@@ -51,6 +51,10 @@ function notificationEvent() {
     });
 }
 
+function replaceSpecialCharacters(chn) {
+    return chn.replace("'", "\'");
+}
+
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
     var title = replaceSpecialCharacters(req.body.title);
@@ -98,8 +102,4 @@ exports.deleteEvent = function (req, res, next) {
             res.json({ message: "Votre événement à bien été supprimé." });
         }
     });
-}
-
-function replaceSpecialCharacters(chn) {
-    return chn.replace("'", "\'");
 }
