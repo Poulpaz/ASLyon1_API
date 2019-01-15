@@ -51,11 +51,28 @@ exports.addEvent = function (req, res, next) {
             throw err;
         } else {
             console.log("Event has been added");
-            notificationController.notificationEvent(title);
+            notificationEvent();
             res.json({ message: "Evénement ajouté avec succès." });
         }
     });
 }
+
+//récupérer un événement
+function notificationEvent() {
+    connectionOnline.query("SELECT idEvent, title FROM event ORDER BY idEvent DESC LIMIT 1", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            Object.keys(result).forEach(function (key) {
+                rowIdEvent = result[key].idEvent;
+                rowTitle = result[key].title;
+            });
+            notificationController.notificationEvent(rowTitle, rowIdEvent);
+        }
+    });
+}
+
+module.exports = {notificationEvent}
 
 //mettre à jour un événement
 exports.updateEvent = function (req, res, next) {

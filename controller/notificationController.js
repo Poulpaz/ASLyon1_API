@@ -11,14 +11,14 @@ admin.initializeApp({
 var topic = "aslyon";
 
 //notification evenements
-function notificationEvent(eventTitle) {
+function notificationEvent(eventTitle, idEvent) {
   var payload = {
     notification: {
       title: "Nouvel évènement",
       body: eventTitle
     },
     data: {
-      idEvent: title
+      idEvent: idEvent
     }
   };
   
