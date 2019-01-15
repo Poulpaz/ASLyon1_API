@@ -9,7 +9,7 @@ admin.initializeApp({
 });
 
 //notification evenements
-exports.notificationEvent = function() {
+function notificationEvent() {
   var payload = {
     notification: {
       title: "Nouvel évènement",
@@ -27,3 +27,5 @@ exports.notificationEvent = function() {
       console.log("Error sending message:", error);
     });
 }
+
+notificationEvent();
