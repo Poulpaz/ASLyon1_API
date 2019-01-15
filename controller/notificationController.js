@@ -27,5 +27,3 @@ function notificationEvent() {
       console.log("Error sending message:", error);
     });
 }
-
-notificationEvent()
