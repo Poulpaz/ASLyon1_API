@@ -36,6 +36,21 @@ exports.getEvent = function(req, res, next) {
     });
 }
 
+//récupérer un événement
+function notificationEvent() {
+    connectionOnline.query("SELECT idEvent, title FROM event ORDER BY idEvent DESC LIMIT 1", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            Object.keys(result).forEach(function (key) {
+                rowIdEvent = result[key].idEvent;
+                rowTitle = result[key].title;
+            });
+            notificationController.notificationEvent(rowTitle, rowIdEvent);
+        }
+    });
+}
+
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
     var title = req.body.title;
@@ -48,23 +63,8 @@ exports.addEvent = function (req, res, next) {
             throw err;
         } else {
             console.log("Event has been added");
-            //notificationEvent();
+            notificationEvent();
             res.json({ message: "Evénement ajouté avec succès." });
-        }
-    });
-}
-
-//récupérer un événement
-function notificationEvent() {
-    connectionOnline.query("SELECT idEvent, title FROM event ORDER BY idEvent DESC LIMIT 1", function (err, result, fields) {
-        if (err) {
-            throw err;
-        } else {
-            Object.keys(result).forEach(function (key) {
-                rowIdEvent = result[key].idEvent;
-                rowTitle = result[key].title;
-            });
-            notificationController.notificationEvent(rowTitle, rowIdEvent);
         }
     });
 }
@@ -99,5 +99,3 @@ exports.deleteEvent = function (req, res, next) {
         }
     });
 }
-
-module.exports = {notificationEvent}
