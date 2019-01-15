@@ -7,7 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-var notificationController = require('notificationController.js');
+var notificationController = require('../controller/notificationController');
 
 //liste des événements
 exports.events = function(req, res, next) {
