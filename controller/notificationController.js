@@ -28,4 +28,4 @@ function notificationEvent() {
     });
 }
 
-notificationEvent();
+notificationEvent()
