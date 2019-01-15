@@ -51,17 +51,13 @@ function notificationEvent() {
     });
 }
 
-function replaceSpecialCharacters(chn) {
-    chn.replace("'", "\'");
-}
-
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
-    var title = replaceSpecialCharacters(req.body.title);
+    var title = req.body.title;
     var date = req.body.date;
-    var place = replaceSpecialCharacters(req.body.place);
-    var price = replaceSpecialCharacters(req.body.price);
-    var description = replaceSpecialCharacters(req.body.description);
+    var place = req.body.place;
+    var price = req.body.price;
+    var description = req.body.description;
     connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
