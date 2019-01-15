@@ -9,7 +9,7 @@ var connectionOnline = mysql.createConnection({
 
 //liste des tournois
 exports.tournaments = function(req, res, next) {
-    connectionOnline.query("SELECT * FROM tournament", function(err, result, fields) {
+    connectionOnline.query("SELECT * FROM tournament ORDER BY idTournament DESC", function(err, result, fields) {
         if(err) {
             throw err;
         } else {

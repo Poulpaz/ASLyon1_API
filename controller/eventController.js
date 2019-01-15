@@ -11,7 +11,7 @@ var notificationController = require('../controller/notificationController');
 
 //liste des événements
 exports.events = function(req, res, next) {
-    connectionOnline.query("SELECT * FROM event", function(err, result, fields) {
+    connectionOnline.query("SELECT * FROM event ORDER BY idEvent DESC", function(err, result, fields) {
         if(err) {
             throw err;
         } else {
