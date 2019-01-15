@@ -58,7 +58,7 @@ exports.addEvent = function (req, res, next) {
     var place = req.body.place;
     var price = req.body.price;
     var description = req.body.description;
-    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
+    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES (" + title + ", " + date + ", " + place + ", " + price + ", " + description + ")", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
