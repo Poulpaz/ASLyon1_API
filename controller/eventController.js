@@ -53,7 +53,7 @@ function notificationEvent() {
 
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
-    var title = req.body.title;
+    var title = req.body.title.replace("'", "\'");
     var date = req.body.date;
     var place = req.body.place;
     var price = req.body.price;
