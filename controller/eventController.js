@@ -69,7 +69,7 @@ exports.addEvent = function (req, res, next) {
     });
 }*/
 
-module.exports = {notificationEvent}
+//module.exports = {notificationEvent}
 
 //mettre à jour un événement
 exports.updateEvent = function (req, res, next) {
