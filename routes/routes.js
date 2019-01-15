@@ -33,7 +33,7 @@ module.exports = function(app) {
     //lister les événements
     app.route('/api/events').get(eventController.events);
     //récupérer les détails d'un événement
-    app.route('/api/event/:idEvent').get(eventController.event);
+    app.route('/api/event/:idEvent').get(eventController.getEvent);
     //ajouter un événement
     app.route('/api/newEvent').post(eventController.addEvent);
     //modifier un événement
