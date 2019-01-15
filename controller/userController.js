@@ -40,6 +40,22 @@ exports.login = function (req, res, next) {
     });
 }
 
+//récupération d'un utilisateur
+exports.connectedUser = function (req, res, next) {
+    var token = req.headers.token;
+    connectionOnline.query("SELECT * FROM user WHERE token='" + token + "'", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            Object.keys(result).forEach(function (key) {
+                row = result[key];
+            });
+            if(row != null) { res.json(row); }
+            else { res.json({ error: "L'utilisateur n'a pas pu être récupéré" }); }
+        }
+    });
+}
+
 //changer le token d'un l'utilisateur
 exports.changeUserToken = function (req, res, next) {
     var token = req.headers.token.token;

@@ -20,6 +20,8 @@ module.exports = function(app) {
     app.route('/api/login').post(userController.login);
     //sign up - inscription
     app.route('/api/signup').post(userController.signup);
+    //sign up - inscription
+    app.route('/api/connectedUser').get(userController.connectedUser);
     //modifier le token d'un compte
     app.route('/api/changeToken').put(userController.changeUserToken);
     //modifier un compte
