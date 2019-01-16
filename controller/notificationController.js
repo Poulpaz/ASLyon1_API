@@ -11,7 +11,7 @@ admin.initializeApp({
 var topic = "aslyon";
 
 //notification evenements
-function notificationEvent(eventTitle, idEvent) {
+exports.notificationEvent = function(eventTitle, idEvent) {
   var payload = {
     notification: {
       title: "Nouvel évènement",
@@ -33,10 +33,10 @@ function notificationEvent(eventTitle, idEvent) {
     .catch(function(error) {
       console.log("Error sending message:", error);
     });
-}
+};
 
 //notification offre
-function notificationOffer(offerTitle, idOffer) {
+exports.notificationOffer = function(offerTitle, idOffer) {
   var payload = {
     notification: {
       title: "Nouvelle offre",
@@ -58,7 +58,4 @@ function notificationOffer(offerTitle, idOffer) {
     .catch(function(error) {
       console.log("Error sending message:", error);
     });
-}
-
-module.exports = {notificationEvent}
-module.exports = {notificationOffer}
+};
