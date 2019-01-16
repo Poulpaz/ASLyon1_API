@@ -54,10 +54,10 @@ exports.isSubscribeEvent = function(req, res, next) {
             throw err;
         } else {
             console.log(result);
-            if(result.lenght < 1) {
-                res.json({ message: 0 });
-            } else {
+            if(result != []) {
                 res.json({ message: 1 });
+            } else {
+                res.json({ message: 0 });
             }
         }
     });
