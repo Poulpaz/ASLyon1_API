@@ -59,7 +59,7 @@ exports.isSubscribeEvent = function(req, res, next) {
                 rowIdUser = result[key].idUser;
                 console.log(rowIdUser + "     :    One result");
             });
-            if(rowIdUser != null) {
+            if(rowIdUser == null) {
                 res.json({ message: 1 });
                 console.log(rowIdUser + "     :    Result full");
             }
