@@ -7,7 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-var rowIdUser;
+var rowIdUser = null;
 
 //liste des inscriptions - événement
 exports.subscribe_event = function(req, res, next) {
@@ -57,7 +57,7 @@ exports.isSubscribeEvent = function(req, res, next) {
         } else {
             Object.keys(result).forEach(function (key) {
                 rowIdUser = result[key].idUser;
-                console.log(rowIdUser + "     :    One result");
+                console.log(result + "     :    results");
             });
             if(rowIdUser == null) {
                 res.json({ message: 1 });
