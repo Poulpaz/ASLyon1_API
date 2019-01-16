@@ -6,6 +6,7 @@ module.exports = function(app) {
     var tournamentController = require('../controller/tournamentController');
     var offerController = require('../controller/offerController');
     var actuController = require('../controller/actuController');
+    var subscribe_eventController = require('../controller/subscribe_eventController');
 
     /* -- routes test - debug -- */
     app.route('/debugMode').get(function (req, res, next) {
@@ -58,13 +59,22 @@ module.exports = function(app) {
     app.route('/api/offers').get(offerController.offers);
     //recuperer les details offre
     app.route('/api/offer/:idOffer').get(offerController.offer);
-    //ajouter un tournoi
+    //ajouter une offre
     app.route('/api/newOffer').post(offerController.addOffer);
-    //modifier un tournoi
+    //modifier une offre
     app.route('/api/changeOfferSpecifies').put(offerController.updateOffer);
-    //supprimer un tournoi
+    //supprimer une offre
     app.route('/api/removeOffer').delete(offerController.deleteOffer);
 
-
+    /* -- Actu routes -- */
+    //liste des actu - flux rss
     app.route('/api/xml').get(actuController.listActuRss);
+
+    /* -- subsribe_event routes -- */
+    //liste de toutes les inscriptions - événement
+    app.route('/api/subscribe_event/:idSubscribe_event').get(subscribe_eventController.subscribe_event);
+    //ajouter une inscription - événement
+    app.route('/api/newSubscribe_event').post(subscribe_eventController.addSubscribe_event);
+    //supprimer une inscription - événement
+    app.route('/api/removeSubscribe_event').delete(subscribe_eventController.deleteSubscribe_event);
 }
