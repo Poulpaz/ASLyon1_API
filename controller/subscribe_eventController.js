@@ -44,3 +44,20 @@ exports.deleteSubscribe_event = function (req, res, next) {
         }
     });
 }
+
+//liste des inscriptions - événement
+exports.isSubscribeEvent = function(req, res, next) {
+    var idUser = req.body.idUser;
+    var idEvent = req.body.idEvent;
+    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, event.idEvent, event.title FROM subscribe_event, user, event WHERE subscribe_event.user_idUser = user.idUser AND subscribe_event.event_idEvent = event.idEvent AND event.idEvent= '" + idEvent + "'", function(err, result, fields) {
+        if(err) {
+            throw err;
+        } else {
+            Object.keys(result).forEach(function (key) {
+                row = result[key];
+            });
+            if(row != null) { res.json({ message: 1 }); }
+            else { res.json({ message: 0 }); }
+        }
+    });
+}
