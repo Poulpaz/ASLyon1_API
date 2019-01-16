@@ -9,6 +9,10 @@ var connectionOnline = mysql.createConnection({
 
 var notificationController = require('../controller/notificationController');
 
+function replaceCharacters(chn) {
+    return chn.replace("\'", "\\'");
+}
+
 //liste des événements
 exports.events = function(req, res, next) {
     connectionOnline.query("SELECT * FROM event ORDER BY idEvent DESC", function(err, result, fields) {
@@ -53,11 +57,11 @@ function notificationEvent() {
 
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
-    var title = req.body.title.replace("\'", "\\'");
+    var title = replaceCharacters(req.body.title);
     var date = req.body.date;
-    var place = req.body.place.replace("\'", "\\'");
+    var place = replaceCharacters(req.body.place);
     var price = req.body.price;
-    var description = req.body.description.replace("\'", "\\'");
+    var description = replaceCharacters(req.body.description);
     connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
