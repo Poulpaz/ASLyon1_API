@@ -7,7 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-var rowIdUser = null;
+var rowIdUser;
 
 //liste des inscriptions - événement
 exports.subscribe_event = function(req, res, next) {
@@ -55,18 +55,10 @@ exports.isSubscribeEvent = function(req, res, next) {
         if(err) {
             throw err;
         } else {
-            Object.keys(result).forEach(function (key) {
-                rowIdUser = result[key].idUser;
-                console.log(result + "     :    results");
-            });
-            if(rowIdUser == null) {
-                res.json({ message: 1 });
-                console.log(rowIdUser + "     :    Result full");
-            }
-            else {
+            if(result.lenght < 1) {
                 res.json({ message: 0 });
-                console.log(rowIdUser + "     :    Result empty");
-            }
+            } else { res.json({ message: 1 }); }
+            console.log(result[0]);
         }
     });
 }
