@@ -40,7 +40,7 @@ exports.getEvent = function(req, res, next) {
     });
 }
 
-//récupérer un événement
+//notifier l'evenement
 function notificationEvent() {
     connectionOnline.query("SELECT idEvent, title FROM event ORDER BY idEvent DESC LIMIT 1", function (err, result, fields) {
         if (err) {
@@ -76,11 +76,11 @@ exports.addEvent = function (req, res, next) {
 //mettre à jour un événement
 exports.updateEvent = function (req, res, next) {
     var idEvent = req.body.idevent;
-    var title = req.body.title;
+    var title = replaceCharacters(req.body.title);
     var date = req.body.date;
-    var place = req.body.place;
+    var place = replaceCharacters(req.body.place);
     var price = req.body.price;
-    var description = req.body.description;
+    var description = replaceCharacters(req.body.description);
     connectionOnline.query("UPDATE event SET title='" + title + "', date='" + date + "', place='" + place + "', price='" + price + "', description='" + description + "' WHERE idEvent='" + idEvent + "'", function (err, result, fields) {
         if (err) {
             throw err;

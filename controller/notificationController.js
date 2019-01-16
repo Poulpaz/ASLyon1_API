@@ -35,4 +35,30 @@ function notificationEvent(eventTitle, idEvent) {
     });
 }
 
+//notification offre
+function notificationOffer(offerTitle, idOffer) {
+  var payload = {
+    notification: {
+      title: "Nouvelle offre",
+      body: offerTitle
+    },
+    data: {
+      idOffer: String(idOffer)
+    }
+  };
+  
+  var options = {
+    priority: "high"
+  }
+  
+  admin.messaging().sendToTopic(topic, payload, options)
+    .then(function(response) {
+      console.log("Successfully sent message:", response);
+    })
+    .catch(function(error) {
+      console.log("Error sending message:", error);
+    });
+}
+
 module.exports = {notificationEvent}
+module.exports = {notificationOffer}

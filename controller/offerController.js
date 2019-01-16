@@ -7,6 +7,12 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
+var notificationController = require('../controller/notificationController');
+
+function replaceCharacters(chn) {
+    return chn.replace("\'", "\\'");
+}
+
 //liste des offres promotionnelles
 exports.offers = function(req, res, next) {
     connectionOnline.query("SELECT * FROM offer ORDER BY idOffer DESC", function(err, result, fields) {
@@ -35,18 +41,34 @@ exports.offer = function(req, res, next) {
     });
 }
 
+//notifier l'offre
+function notificationOffer() {
+    connectionOnline.query("SELECT idOffer, title FROM offer ORDER BY idOffer DESC LIMIT 1", function (err, result, fields) {
+        if (err) {
+            throw err;
+        } else {
+            Object.keys(result).forEach(function (key) {
+                rowIdOffer = result[key].idOffer;
+                rowTitle = result[key].title;
+            });
+            notificationController.notificationOffer(rowTitle, rowIdOffer);
+        }
+    });
+}
+
 //ajouter une offre promotionnelle
 exports.addOffer = function (req, res, next) {
-    var title = req.body.title;
+    var title = replaceCharacters(req.body.title);
     var date = req.body.date;
     var nbParticipants = req.body.nbParticipants;
     var price = req.body.price;
-    var description = req.body.description;
+    var description = replaceCharacters(req.body.description);
     connectionOnline.query("INSERT INTO offer (title, date, nbParticipants, price, description) VALUES ('" + title + "', '" + date + "', '" + nbParticipants + "', '" + price + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
             console.log("Offer has been added");
+            notificationOffer();
             res.json({ message: "Offre promotionnelle ajoutée avec succès." });
         }
     });
@@ -55,11 +77,11 @@ exports.addOffer = function (req, res, next) {
 //mettre à jour une offre promotionnelle
 exports.updateOffer = function (req, res, next) {
     var idOffer = req.body.idoffer;
-    var title = req.body.title;
+    var title = replaceCharacters(req.body.title);
     var date = req.body.date;
     var nbParticipants = req.body.nbParticipants;
     var price = req.body.price;
-    var description = req.body.description;
+    var description = replaceCharacters(req.body.description);
     connectionOnline.query("UPDATE offer SET title='" + title + "', date='" + date + "', nbParticipants='" + nbParticipants + "', price='" + price + "', description='" + description + "' WHERE idOffer='" + idOffer + "'", function (err, result, fields) {
         if (err) {
             throw err;
