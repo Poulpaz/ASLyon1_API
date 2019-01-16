@@ -27,7 +27,6 @@ exports.addSubscribe_event = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Subscribe have been a succes.");
             res.json({ message: "Votre inscription a bien été prise en compte." });
         }
     });
@@ -40,7 +39,6 @@ exports.deleteSubscribe_event = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Subscribe has been deleted.");
             res.json({ message: "Votre désinscription à bien été prise en compte." });
         }
     });

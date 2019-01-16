@@ -34,7 +34,6 @@ exports.offer = function(req, res, next) {
         } else {
             Object.keys(result).forEach(function (key) {
                 row = result[key];
-                console.log(row.title);
             });
             res.json(row);
         }
@@ -67,7 +66,6 @@ exports.addOffer = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Offer has been added");
             notificationOffer();
             res.json({ message: "Offre promotionnelle ajoutée avec succès." });
         }
@@ -86,7 +84,6 @@ exports.updateOffer = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Offer has been updated.");
             res.json({ message: "Les informations de l'offre promotionnelle ont été modifiées avec succès." });
         }
     });
@@ -99,7 +96,6 @@ exports.deleteOffer = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Offer has been deleted.");
             res.json({ message: "Votre offre promotionnelle à bien été supprimée." });
         }
     });

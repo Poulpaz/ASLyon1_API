@@ -10,7 +10,7 @@ var connectionOnline = mysql.createConnection({
 var notificationController = require('../controller/notificationController');
 
 function replaceCharacters(chn) {
-    return chn.replace("\'", "@\\'");
+    return chn.replace("\'", "\\'");
 }
 
 //liste des événements
@@ -66,7 +66,6 @@ exports.addEvent = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Event has been added");
             notificationEvent();
             res.json({ message: "Evénement ajouté avec succès." });
         }
@@ -85,7 +84,6 @@ exports.updateEvent = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Event has been updated.");
             res.json({ message: "Les informations de l'événement ont été modifiées avec succès." });
         }
     });
@@ -98,7 +96,6 @@ exports.deleteEvent = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Event has been deleted.");
             res.json({ message: "Votre événement à bien été supprimé." });
         }
     });

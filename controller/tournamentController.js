@@ -31,7 +31,6 @@ exports.tournament = function(req, res, next) {
         } else {
             Object.keys(result).forEach(function (key) {
                 row = result[key];
-                console.log(row.title);
             });
             res.json(row);
         }
@@ -51,7 +50,6 @@ exports.addTournament = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Tournament has been added");
             res.json({ message: "Tournoi ajouté avec succès." });
         }
     });
@@ -71,7 +69,6 @@ exports.updateTournament = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Tournament has been updated.");
             res.json({ message: "Les informations du tournois ont été modifiées avec succès." });
         }
     });
@@ -84,7 +81,6 @@ exports.deleteTournament = function (req, res, next) {
         if (err) {
             throw err;
         } else {
-            console.log("Tournament has been deleted.");
             res.json({ message: "Votre tournoi à bien été supprimé." });
         }
     });
