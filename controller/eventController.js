@@ -7,9 +7,11 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-escape_quotes = require('escape-quotes-regexp');
-
 var notificationController = require('../controller/notificationController');
+
+function replaceCharacters(chn) {
+    return chn.replace(/'/g, "\\'");
+}
 
 //liste des événements
 exports.events = function(req, res, next) {
@@ -55,11 +57,11 @@ function notificationEvent() {
 
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
-    var title = escape_quotes(req.body.title);
+    var title = replaceCharacters(req.body.title);
     var date = req.body.date;
-    var place = escape_quotes(req.body.place);
+    var place = replaceCharacters(req.body.place);
     var price = req.body.price;
-    var description = escape_quotes(req.body.description);
+    var description = replaceCharacters(req.body.description);
     connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
@@ -73,11 +75,11 @@ exports.addEvent = function (req, res, next) {
 //mettre à jour un événement
 exports.updateEvent = function (req, res, next) {
     var idEvent = req.body.idevent;
-    var title = escape_quotes(req.body.title);
+    var title = replaceCharacters(req.body.title);
     var date = req.body.date;
-    var place = escape_quotes(req.body.place);
+    var place = replaceCharacters(req.body.place);
     var price = req.body.price;
-    var description = escape_quotes(req.body.description);
+    var description = replaceCharacters(req.body.description);
     connectionOnline.query("UPDATE event SET title='" + title + "', date='" + date + "', place='" + place + "', price='" + price + "', description='" + description + "' WHERE idEvent='" + idEvent + "'", function (err, result, fields) {
         if (err) {
             throw err;
