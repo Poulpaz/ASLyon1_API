@@ -10,7 +10,7 @@ var connectionOnline = mysql.createConnection({
 var notificationController = require('../controller/notificationController');
 
 function replaceCharacters(chn) {
-    return chn.replace("\'", "\\'");
+    return chn.replace("\'", "@\\'");
 }
 
 //liste des événements
