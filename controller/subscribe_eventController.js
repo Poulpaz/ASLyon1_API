@@ -55,6 +55,8 @@ exports.isSubscribeEvent = function(req, res, next) {
         } else {
             Object.keys(result).forEach(function (key) {
                 row = result[key];
+                console.log(row);
+                console.log(result);
             });
             if(row != []) {
                 res.json({ message: 1 });
