@@ -21,31 +21,27 @@ exports.subscribe_event = function(req, res, next) {
 
 //ajouter une incription - événement
 exports.addSubscribe_event = function (req, res, next) {
-    var title = replaceCharacters(req.body.title);
-    var date = req.body.date;
-    var nbParticipants = req.body.nbParticipants;
-    var price = req.body.price;
-    var description = replaceCharacters(req.body.description);
-    connectionOnline.query("INSERT INTO offer (title, date, nbParticipants, price, description) VALUES ('" + title + "', '" + date + "', '" + nbParticipants + "', '" + price + "', '" + description + "')", function (err, result, fields) {
+    var idUser = req.body.idUser;
+    var idEvent = req.body.idEvent;
+    connectionOnline.query("INSERT INTO subscribe_event (user_idUser, event_idEvent) VALUES ('" + idUser + "', '" + idEvent + "')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
-            console.log("Offer has been added");
-            notificationOffer();
-            res.json({ message: "Offre promotionnelle ajoutée avec succès." });
+            console.log("Subscribe have been a succes.");
+            res.json({ message: "Votre inscription a bien été prise en compte." });
         }
     });
 }
 
 //supprimer une inscription - événement
 exports.deleteSubscribe_event = function (req, res, next) {
-    var idOffer = req.body.idoffer;
-    connectionOnline.query("DELETE FROM offer WHERE idOffer=" + idOffer + "", function (err, result, fields) {
+    var idSubscribe_event = req.params.idSubscribe_event;
+    connectionOnline.query("DELETE FROM subscribe_event WHERE idSubscribe_event=" + idSubscribe_event + "", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
-            console.log("Offer has been deleted.");
-            res.json({ message: "Votre offre promotionnelle à bien été supprimée." });
+            console.log("Subscribe has been deleted.");
+            res.json({ message: "Votre désinscription à bien été prise en compte." });
         }
     });
 }
