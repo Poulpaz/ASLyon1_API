@@ -55,7 +55,7 @@ function notificationEvent() {
 exports.addEvent = function (req, res, next) {
     var title = req.body.title.replace("\'", "\\'");
     var date = req.body.date;
-    var place = req.body.place;
+    var place = req.body.place.replace("\'", "\\'");
     var price = req.body.price;
     var description = req.body.description.replace("\'", "\\'");
     connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
