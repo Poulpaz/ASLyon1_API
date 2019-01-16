@@ -55,13 +55,16 @@ exports.isSubscribeEvent = function(req, res, next) {
         } else {
             Object.keys(result).forEach(function (key) {
                 row = result[key];
-                console.log(row);
-                console.log(result);
+                console.log(row + "     :    One result");
             });
             if(row != []) {
                 res.json({ message: 1 });
+                console.log(row + "     :    Result full");
             }
-            else { res.json({ message: 0 }); }
+            else {
+                res.json({ message: 0 });
+                console.log(row + "     :    Result empty");
+            }
         }
     });
 }
