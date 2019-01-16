@@ -49,16 +49,16 @@ exports.deleteSubscribe_event = function (req, res, next) {
 exports.isSubscribeEvent = function(req, res, next) {
     var idUser = req.body.idUser;
     var idEvent = req.body.idEvent;
+    var row;
     connectionOnline.query("SELECT * FROM subscribe_event WHERE user_idUser = '" + idUser + "' AND event_idEvent = '" + idEvent + "'", function(err, result, fields) {
         if(err) {
             throw err;
         } else {
-            console.log(result);
-            if(result.RowDataPacket.size == 1) {
-                res.json({ message: 1 });
-            } else {
-                res.json({ message: 0 });
-            }
+            Object.keys(result).forEach(function (key) {
+                row = result[key];
+            });
+            if(row != null) { res.json({ message: 1 }); }
+            else { res.json({ message: 0 }); }
         }
     });
 }
