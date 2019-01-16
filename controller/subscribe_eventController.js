@@ -54,7 +54,7 @@ exports.isSubscribeEvent = function(req, res, next) {
             throw err;
         } else {
             console.log(result);
-            if(result.RowDataPacket.length == 1) {
+            if(result.RowDataPacket.size == 1) {
                 res.json({ message: 1 });
             } else {
                 res.json({ message: 0 });
