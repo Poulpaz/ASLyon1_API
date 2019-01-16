@@ -55,8 +55,8 @@ exports.connectedUser = function (req, res, next) {
 
 //changer le token d'un l'utilisateur
 exports.changeUserToken = function (req, res, next) {
-    var token = req.headers.token;
-    var newToken = req.headers.newToken;
+    var token = req.body.token;
+    var newToken = req.body.newToken;
 
     connectionOnline.query("UPDATE user SET token='" + newToken + "' WHERE token=" + token + "", function (err, result, fields) {
         if (err) {

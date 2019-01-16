@@ -1,8 +1,8 @@
-//var request = require('request');
+//Instancier du parser
 let Parser = require('rss-parser');
 let parser = new Parser();
 
-/* Get RSS Flux from AS Lyon 1 */
+//Lister les actualité - Récupérer le flux RSS
 exports.listActuRss = function(req, res) {
     (async () => {
         feed = await parser.parseURL('https://as.univ-lyon1.fr/feed/');

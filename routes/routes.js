@@ -1,6 +1,6 @@
 module.exports = function(app) {
-    console.log("route");
-
+    
+    //Déclaration des contrôleurs
     var userController = require('../controller/userController');
     var eventController = require('../controller/eventController');
     var tournamentController = require('../controller/tournamentController');
@@ -8,75 +8,75 @@ module.exports = function(app) {
     var actuController = require('../controller/actuController');
     var subscribe_eventController = require('../controller/subscribe_eventController');
 
-    /* -- routes test - debug -- */
+    /* -- Routes test - Debug -- */
     app.route('/debugMode').get(function (req, res, next) {
         console.log("Hello")        
         res.send("Hello Tristan. API is working... You can begin to use it !")
     });
 
     /* -- User routes -- */
-    //liste des comptes existants
+    //Lister les comptes utilisateurs existants
     app.route('/api/users').get(userController.users);
-    //login - connexion
+    //Login - Connexion
     app.route('/api/login').post(userController.login);
-    //sign up - inscription
+    //Signup - Inscription
     app.route('/api/signup').post(userController.signup);
-    //sign up - inscription
+    //Signup - Inscription
     app.route('/api/connectedUser').get(userController.connectedUser);
-    //modifier le token d'un compte
+    //Modifier le token d'un compte utilisateur existant
     app.route('/api/changeToken').put(userController.changeUserToken);
-    //modifier un compte
+    //Modifier un compte utilisateur existant
     app.route('/api/changeUserSpecifies').put(userController.updateUser);
-    //supprimer un compte
+    //Supprimer un compte utilisateur existant
     app.route('/api/removeUser').delete(userController.deleteUser);
 
     /* -- Event routes -- */
-    //lister les événements
+    //Lister les événements existants
     app.route('/api/events').get(eventController.events);
-    //récupérer les détails d'un événement
+    //Récupérer les détails d'un événement existant
     app.route('/api/event/:idEvent').get(eventController.getEvent);
-    //ajouter un événement
+    //Ajouter un événement
     app.route('/api/newEvent').post(eventController.addEvent);
-    //modifier un événement
+    //Modifier un événement existant
     app.route('/api/changeEventSpecifies').put(eventController.updateEvent);
-    //supprimer un événement
+    //Supprimer un événement existant
     app.route('/api/removeEvent').delete(eventController.deleteEvent);
 
     /* -- Tournament routes -- */
-    //liste des tournois
+    //Lister les tournois existants
     app.route('/api/tournaments').get(tournamentController.tournaments);
-    //recuperer les details tournois
+    //Récupérer les details d'un tournoi existant
     app.route('/api/tournament/:idTournament').get(tournamentController.tournament);
-    //ajouter un tournoi
+    //Ajouter un tournoi
     app.route('/api/newTournament').post(tournamentController.addTournament);
-    //modifier un tournoi
+    //Modifier un tournoi existant
     app.route('/api/changeTournamentSpecifies').put(tournamentController.updateTournament);
-    //supprimer un tournoi
+    //Supprimer un tournoi existant
     app.route('/api/removeTournament').delete(tournamentController.deleteTournament);
 
     /* -- Offer routes -- */
-    //liste des offres
+    //Lister les offres existantes
     app.route('/api/offers').get(offerController.offers);
-    //recuperer les details offre
+    //Récupérer les détails d'une offre existante
     app.route('/api/offer/:idOffer').get(offerController.offer);
-    //ajouter une offre
+    //Ajouter une offre
     app.route('/api/newOffer').post(offerController.addOffer);
-    //modifier une offre
+    //Modifier une offre existante
     app.route('/api/changeOfferSpecifies').put(offerController.updateOffer);
-    //supprimer une offre
+    //Supprimer une offre existante
     app.route('/api/removeOffer').delete(offerController.deleteOffer);
 
     /* -- Actu routes -- */
-    //liste des actu - flux rss
+    //Lister les actualité - Récupérer le flux RSS
     app.route('/api/xml').get(actuController.listActuRss);
 
-    /* -- subsribe_event routes -- */
-    //liste de toutes les inscriptions - événement
+    /* -- Subscribe Event routes -- */
+    //Lister toutes les inscriptions à tout les événements
     app.route('/api/subscribe_event/:idEvent').get(subscribe_eventController.subscribe_event);
-    //ajouter une inscription - événement
+    //S'inscrire à un événement
     app.route('/api/newSubscribe_event').post(subscribe_eventController.addSubscribe_event);
-    //supprimer une inscription - événement
+    //Se désinscrire d'un événement
     app.route('/api/removeSubscribe_event').delete(subscribe_eventController.deleteSubscribe_event);
-    //vérifier si l'utilisateur es tdéjà inscrit
+    //Vérifier si un utilisateur est déjà inscrit à un événement
     app.route('/api/isSubscribeEvent').get(subscribe_eventController.isSubscribeEvent);
 }
