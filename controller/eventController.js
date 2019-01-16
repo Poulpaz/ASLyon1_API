@@ -62,7 +62,7 @@ exports.addEvent = function (req, res, next) {
     var place = replaceCharacters(req.body.place);
     var price = req.body.price;
     var description = replaceCharacters(req.body.description);
-    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
+    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES (\'" + title + "\', \'" + date + "\', \'" + place + "\', \'" + price + "\', \'" + description + "\')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
