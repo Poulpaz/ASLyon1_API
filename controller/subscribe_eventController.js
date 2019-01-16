@@ -7,8 +7,6 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-var rowIdUser;
-
 //liste des inscriptions - événement
 exports.subscribe_event = function(req, res, next) {
     var idEvent = req.params.idEvent;
@@ -51,14 +49,15 @@ exports.deleteSubscribe_event = function (req, res, next) {
 exports.isSubscribeEvent = function(req, res, next) {
     var idUser = req.body.idUser;
     var idEvent = req.body.idEvent;
-    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, event.idEvent, event.title FROM subscribe_event, user, event WHERE subscribe_event.user_idUser = user.idUser AND subscribe_event.event_idEvent = event.idEvent AND event.idEvent= '" + idEvent + "' AND event.idEvent= '" + idUser + "'", function(err, result, fields) {
+    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, event.idEvent, event.title FROM subscribe_event, user, event WHERE subscribe_event.user_idUser = user.idUser AND subscribe_event.event_idEvent = event.idEvent AND event_idEvent= '" + idEvent + "' AND user_idUser= '" + idUser + "'", function(err, result, fields) {
         if(err) {
             throw err;
         } else {
             if(result.lenght < 1) {
                 res.json({ message: 0 });
-            } else { res.json({ message: 1 }); }
-            console.log(result);
+            } else {
+                res.json({ message: 1 });
+            }
         }
     });
 }

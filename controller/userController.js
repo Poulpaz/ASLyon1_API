@@ -39,6 +39,7 @@ exports.login = function (req, res, next) {
 //récupération d'un utilisateur
 exports.connectedUser = function (req, res, next) {
     var token = req.headers.token;
+    var row;
     connectionOnline.query("SELECT * FROM user WHERE token='" + token + "'", function (err, result, fields) {
         if (err) {
             throw err;
