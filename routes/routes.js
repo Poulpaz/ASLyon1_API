@@ -1,5 +1,5 @@
 module.exports = function(app) {
-    
+
     //Déclaration des contrôleurs
     var userController = require('../controller/userController');
     var eventController = require('../controller/eventController');
@@ -21,10 +21,8 @@ module.exports = function(app) {
     app.route('/api/login').post(userController.login);
     //Signup - Inscription
     app.route('/api/signup').post(userController.signup);
-    //Signup - Inscription
+    //Récupérer un profil utilisateur
     app.route('/api/connectedUser').get(userController.connectedUser);
-    //Modifier le token d'un compte utilisateur existant
-    app.route('/api/changeToken').put(userController.changeUserToken);
     //Modifier un compte utilisateur existant
     app.route('/api/changeUserSpecifies').put(userController.updateUser);
     //Supprimer un compte utilisateur existant

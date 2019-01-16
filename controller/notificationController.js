@@ -1,17 +1,14 @@
-
 var admin = require("firebase-admin");
-
 var serviceAccount = require("../serviceAccountKey.json");
+var topic = "aslyon";
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://aslyon1-80c44.firebaseio.com"
 });
 
-var topic = "aslyon";
-
-//notification evenements
-exports.notificationEvent = function(eventTitle, idEvent) {
+//Notifier les utilisateurs d'un nouvel événement
+exports.notificationEvent = function (eventTitle, idEvent) {
   var payload = {
     notification: {
       title: "Nouvel évènement",
@@ -21,7 +18,6 @@ exports.notificationEvent = function(eventTitle, idEvent) {
       idEvent: String(idEvent)
     }
   };
-  
   var options = {
     priority: "high"
   }
@@ -35,8 +31,8 @@ exports.notificationEvent = function(eventTitle, idEvent) {
     });
 };
 
-//notification offre
-exports.notificationOffer = function(offerTitle, idOffer) {
+//Notifier les utilisateurs d'une nouvelle offre
+exports.notificationOffer = function (offerTitle, idOffer) {
   var payload = {
     notification: {
       title: "Nouvelle offre",
@@ -46,7 +42,6 @@ exports.notificationOffer = function(offerTitle, idOffer) {
       idOffer: String(idOffer)
     }
   };
-  
   var options = {
     priority: "high"
   }
