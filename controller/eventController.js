@@ -7,11 +7,9 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-var notificationController = require('../controller/notificationController');
+escape_quotes = require('escape-quotes');
 
-function replaceCharacters(chn) {
-    return chn.replace("\'","\\'" );
-}
+var notificationController = require('../controller/notificationController');
 
 //liste des événements
 exports.events = function(req, res, next) {
@@ -57,12 +55,12 @@ function notificationEvent() {
 
 //ajouter un événement
 exports.addEvent = function (req, res, next) {
-    var title = replaceCharacters(req.body.title);
+    var title = escape_quotes(req.body.title);
     var date = req.body.date;
-    var place = replaceCharacters(req.body.place);
+    var place = escape_quotes(req.body.place);
     var price = req.body.price;
-    var description = replaceCharacters(req.body.description);
-    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES (\'" + title + "\', \'" + date + "\', \'" + place + "\', \'" + price + "\', \'" + description + "\')", function (err, result, fields) {
+    var description = escape_quotes(req.body.description);
+    connectionOnline.query("INSERT INTO event (title, date, place, price, description) VALUES ('" + title + "', '" + date + "', '" + place + "', '" + price + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
@@ -75,11 +73,11 @@ exports.addEvent = function (req, res, next) {
 //mettre à jour un événement
 exports.updateEvent = function (req, res, next) {
     var idEvent = req.body.idevent;
-    var title = replaceCharacters(req.body.title);
+    var title = escape_quotes(req.body.title);
     var date = req.body.date;
-    var place = replaceCharacters(req.body.place);
+    var place = escape_quotes(req.body.place);
     var price = req.body.price;
-    var description = replaceCharacters(req.body.description);
+    var description = escape_quotes(req.body.description);
     connectionOnline.query("UPDATE event SET title='" + title + "', date='" + date + "', place='" + place + "', price='" + price + "', description='" + description + "' WHERE idEvent='" + idEvent + "'", function (err, result, fields) {
         if (err) {
             throw err;
