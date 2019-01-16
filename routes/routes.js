@@ -72,9 +72,9 @@ module.exports = function(app) {
 
     /* -- subsribe_event routes -- */
     //liste de toutes les inscriptions - événement
-    app.route('/api/subscribe_event/:idSubscribe_event').get(subscribe_eventController.subscribe_event);
+    app.route('/api/subscribe_event/:idEvent').get(subscribe_eventController.subscribe_event);
     //ajouter une inscription - événement
     app.route('/api/newSubscribe_event').post(subscribe_eventController.addSubscribe_event);
     //supprimer une inscription - événement
-    app.route('/api/removeSubscribe_event/:idSubscribe_event').delete(subscribe_eventController.deleteSubscribe_event);
+    app.route('/api/removeSubscribe_event').delete(subscribe_eventController.deleteSubscribe_event);
 }

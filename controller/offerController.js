@@ -10,7 +10,7 @@ var connectionOnline = mysql.createConnection({
 var notificationController = require('../controller/notificationController');
 
 function replaceCharacters(chn) {
-    return chn.replace("\'", "\\'");
+    return chn.replace(/'/g, "\\'");
 }
 
 //liste des offres promotionnelles
@@ -58,11 +58,12 @@ function notificationOffer() {
 //ajouter une offre promotionnelle
 exports.addOffer = function (req, res, next) {
     var title = replaceCharacters(req.body.title);
-    var date = req.body.date;
+    var startDate = req.body.startDate;
+    var endDate = req.body.endDate;
     var nbParticipants = req.body.nbParticipants;
     var price = req.body.price;
     var description = replaceCharacters(req.body.description);
-    connectionOnline.query("INSERT INTO offer (title, date, nbParticipants, price, description) VALUES ('" + title + "', '" + date + "', '" + nbParticipants + "', '" + price + "', '" + description + "')", function (err, result, fields) {
+    connectionOnline.query("INSERT INTO offer (title, startDate, endDate, nbParticipants, price, description) VALUES ('" + title + "', '" + startDate + "', '" + endDate + "', '" + nbParticipants + "', '" + price + "', '" + description + "')", function (err, result, fields) {
         if (err) {
             throw err;
         } else {
