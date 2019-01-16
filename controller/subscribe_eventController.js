@@ -49,6 +49,7 @@ exports.deleteSubscribe_event = function (req, res, next) {
 exports.isSubscribeEvent = function(req, res, next) {
     var idUser = req.body.idUser;
     var idEvent = req.body.idEvent;
+    var row;
     connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, event.idEvent, event.title FROM subscribe_event, user, event WHERE subscribe_event.user_idUser = user.idUser AND subscribe_event.event_idEvent = event.idEvent AND event.idEvent= '" + idEvent + "' AND event.idEvent= '" + idUser + "'", function(err, result, fields) {
         if(err) {
             throw err;
