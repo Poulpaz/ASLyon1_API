@@ -10,7 +10,7 @@ var connectionOnline = mysql.createConnection({
 //liste des inscriptions - événement
 exports.subscribe_event = function(req, res, next) {
     var idSubscribe_event = req.params.idSubscribe_event;
-    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, event.idEvent, event.title FROM subscribe_event, user, event WHERE subscribe_event.user_idUser = user.idUser AND subscribe_event.event_idEvent = event.idEvent AND event.idEvent=", function(err, result, fields) {
+    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, event.idEvent, event.title FROM subscribe_event, user, event WHERE subscribe_event.user_idUser = user.idUser AND subscribe_event.event_idEvent = event.idEvent AND event.idEvent= '" + idSubscribe_event + "'", function(err, result, fields) {
         if(err) {
             throw err;
         } else {
