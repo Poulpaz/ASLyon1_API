@@ -7,7 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-escape_quotes = require('escape-quotes');
+escape_quotes = require('escape-quotes-regexp');
 
 var notificationController = require('../controller/notificationController');
 
