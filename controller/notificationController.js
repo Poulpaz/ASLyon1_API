@@ -15,7 +15,7 @@ exports.notificationEvent = function (eventTitle, idEvent) {
       body: eventTitle
     },
     data: {
-      idEvent: String(idEvent),
+      idNotif: String(idEvent),
       type: "event"
     }
   };
@@ -40,7 +40,7 @@ exports.notificationOffer = function (offerTitle, idOffer) {
       body: offerTitle
     },
     data: {
-      idOffer: String(idOffer),
+      idNotif: String(idOffer),
       type: "offer"
     }
   };
