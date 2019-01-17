@@ -55,5 +55,5 @@ exports.addSubscribe_tournament = function(req, res, next) {
         console.log(lastnameSubscriber + " " + firstnameSubscriber);
         //insertPlayerIntoDB(lastnameSubscriber, firstnameSubscriber);
     });
-    res.json( { message: done } );
+    res.json( { message: "done" } );
 }
