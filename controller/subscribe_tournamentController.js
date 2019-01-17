@@ -36,9 +36,25 @@ exports.subscribe_tournamentTeamsPlayers = function(req, res, next) {
 
 //Création de l'équipe
 function createTeam(idUser, teamName) {
-    connectionOnline.query("INSERT INTO team (teamName, user_idUser) VALUES ('" + idUser + "', '" + teamName + "')", function (err, result, fields) {
-        if (err) { throw err; }
-        else { }
+    connectionOnline.query("INSERT INTO team (teamName, user_idUser) VALUES ('" + teamName + "', '" + idUser + "')", function (err, result, fields) {
+        if(err) { throw err; }
+        else { return; }
+    });
+}
+
+//Insérer un joueur
+function insertPlayerIntoDB(idTeam, lastnameSubscriber, firstnameSubscriber) {
+    connectionOnline.query("INSERT INTO teamPlayers (team_idTeam, lastnameSubscriber, firstnameSubscriber) VALUES ('" + idTeam + "', '" + lastnameSubscriber + "', '" + firstnameSubscriber + "')", function (err, result, fields) {
+        if(err) { throw err; }
+        else { return; }
+    });
+}
+
+//Récupérer l'ID de l'équipe
+function getIdTeamByDesc() {
+    connectionOnline.query("SELECT idTeam FROM team ORDER BY idTeam DESC LIMIT 1", function (err, result, fields) {
+        if(err) { throw err; }
+        else { return result; }
     });
 }
 
@@ -48,17 +64,22 @@ exports.addSubscribe_tournament = function(req, res, next) {
     var user_idUser = req.body.idUser;
     var listTeamPlayers = req.body.listTeamPlayers;
     var tournament_idTournament = req.body.idTournament;
-    //createTeam(user_idUser, teamName);
+    createTeam(user_idUser, teamName);
+    var idTeam = getIdTeamByDesc();
+
     console.log("teamName : " + teamName);
     console.log("user_idUser : " + user_idUser);
     console.log("tournament_idTournament : " + tournament_idTournament);
 
-    
     Object.keys(listTeamPlayers).forEach(function (key) {
         var lastnameSubscriber = listTeamPlayers[key].lastnameSubscriber;
         var firstnameSubscriber = listTeamPlayers[key].firstnameSubscriber;
         console.log(lastnameSubscriber + " " + firstnameSubscriber);
-        //insertPlayerIntoDB(lastnameSubscriber, firstnameSubscriber);
+        insertPlayerIntoDB(idTeam, lastnameSubscriber, firstnameSubscriber);
     });
-    res.json( { message: "done" } );
+
+    connectionOnline.query("INSERT INTO subscribe_tournament (tournament_idTournament, team_idTeam) VALUES ('" + tournament_idTournament + "', '" + idTeam + "')", function (err, result, fields) {
+        if(err) { throw err; }
+        else { res.json( { message: "done" } ); }
+    });
 }
