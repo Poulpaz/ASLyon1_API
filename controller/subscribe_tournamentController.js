@@ -22,6 +22,7 @@ exports.subscribe_tournamentTeams = function(req, res, next) {
     connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, team.idTeam, team.teamName FROM user, tournament, team WHERE team.user_idUser = user.idUser AND tournament.idTournament= '" + idTournament + "'", function(err, result, fields) {
         if(err) { throw err; }
         else {
+            var playerData;
             Object.keys(result).forEach(function (key) {
                 rowIdTeam = result[key].idTeam;
                 playerData += getPlayersInTeam(rowIdTeam);
