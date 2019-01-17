@@ -56,7 +56,9 @@ function getIdTeamByDesc() {
         if(err) { throw err; }
         else {
             Object.keys(result).forEach(function (key) {
-                return result[key].idTeam;
+                console.log(result);
+                console.log(result[key]);
+                console.log(result[key].idTeam);
             });
         }
     });
