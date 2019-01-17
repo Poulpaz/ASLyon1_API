@@ -10,7 +10,7 @@ var connectionOnline = mysql.createConnection({
 //Lister toutes les inscriptions à un tournoi
 exports.subscribe_tournamentPlayers = function(req, res, next) {
     var idTournament = req.params.idTournament;
-    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, tournament.idTournament, tournament.title, team.idTeam, team.teamName, teamPlayers.lastnameSubscriber, teamPlayers.firstnameSubscriber FROM subscribe_tournament, user, tournament, team, teamPlayers WHERE team.user_idUser = user.idUser AND teamPlayers.team_idTeam = team.idTeam AND subscribe_tournament.team_idTeam = team.idTeam AND subscribe_tournament.tournament_idTournament = tournament.idTournament AND tournament.idTournament= '" + idTournament + "'", function(err, result, fields) {
+    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, tournament.idTournament, tournament.title, team.idTeam, team.teamName, teamPlayers.idTeamPlayers, teamPlayers.lastnameSubscriber, teamPlayers.firstnameSubscriber FROM subscribe_tournament, user, tournament, team, teamPlayers WHERE team.user_idUser = user.idUser AND teamPlayers.team_idTeam = team.idTeam AND subscribe_tournament.team_idTeam = team.idTeam AND subscribe_tournament.tournament_idTournament = tournament.idTournament AND tournament.idTournament= '" + idTournament + "'", function(err, result, fields) {
         if(err) { throw err; }
         else { res.json(result); }
     });
@@ -28,7 +28,7 @@ exports.subscribe_tournamentTeams = function(req, res, next) {
 //Lister les joueurs d'une équipe
 exports.subscribe_tournamentTeamsPlayers = function(req, res, next) {
     var idTeam = req.params.idTeam;
-    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, teamPlayers.lastnameSubscriber, teamPlayers.firstnameSubscriber FROM user, team, teamPlayers WHERE team.user_idUser = user.idUser AND teamPlayers.team_idTeam = team.idTeam AND team.idTeam= '" + idTeam + "'", function(err, result, fields) {
+    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, teamPlayers.idTeamPlayers, teamPlayers.lastnameSubscriber, teamPlayers.firstnameSubscriber FROM user, team, teamPlayers WHERE team.user_idUser = user.idUser AND teamPlayers.team_idTeam = team.idTeam AND team.idTeam= '" + idTeam + "'", function(err, result, fields) {
         if(err) { throw err; }
         else { res.json(result); }
     });
