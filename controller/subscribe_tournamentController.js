@@ -19,17 +19,25 @@ exports.subscribe_tournamentPlayers = function(req, res, next) {
 //Lister toutes les équipes inscrites à un tournoi
 exports.subscribe_tournamentTeams = function(req, res, next) {
     var idTournament = req.params.idTournament;
+    var playerData;
     connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, team.idTeam, team.teamName FROM user, tournament, team WHERE team.user_idUser = user.idUser AND tournament.idTournament= '" + idTournament + "'", function(err, result, fields) {
         if(err) { throw err; }
-        else { res.json(result); }
+        else {
+            Object.keys(result).forEach(function (key) {
+                rowIdTeam = result[key].idTeam;
+                playerData += getPlayersInTeam(rowIdTeam);
+            });
+            res.json(playerData);
+        }
     });
 }
 
-//Lister les joueurs d'une équipe
-exports.subscribe_tournamentTeamsPlayers = function(req, res, next) {
-    var idTeam = req.params.idTeam;
-    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, teamPlayers.lastnameSubscriber, teamPlayers.firstnameSubscriber FROM user, team, teamPlayers WHERE team.user_idUser = user.idUser AND teamPlayers.team_idTeam = team.idTeam AND team.idTeam= '" + idTeam + "'", function(err, result, fields) {
-        if(err) { throw err; }
-        else { res.json(result); }
+//Récupérer les joueurs d'une équipe
+function getPlayersInTeam(idTeam) {
+    connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, teamPlayers.lastnameSubscriber, teamPlayers.firstnameSubscriber FROM user, team, teamPlayers WHERE team.user_idUser = user.idUser AND teamPlayers.team_idTeam = team.idTeam AND team.idTeam= '" + idTeam + "'", function (err, result, fields) {
+        if (err) { throw err; }
+        else {
+            return result;
+        }
     });
 }
