@@ -44,11 +44,16 @@ function createTeam(idUser, teamName) {
 
 //S'inscrire à un tournoi
 exports.addSubscribe_tournament = function(req, res, next) {
-    //var teamName = req.body.teamName;
-    //var user_idUser = req.body.user_idUser;
+    var teamName = req.body.teamName;
+    var user_idUser = req.body.idUser;
     var listTeamPlayers = req.body.listTeamPlayers;
-    //var tournament_idTournament = req.body.tournament_idTournament;
+    var tournament_idTournament = req.body.idTournament;
     //createTeam(user_idUser, teamName);
+    console.log("teamName : " + teamName);
+    console.log("user_idUser : " + user_idUser);
+    console.log("tournament_idTournament : " + tournament_idTournament);
+
+    
     Object.keys(listTeamPlayers).forEach(function (key) {
         var lastnameSubscriber = listTeamPlayers[key].lastnameSubscriber;
         var firstnameSubscriber = listTeamPlayers[key].firstnameSubscriber;
