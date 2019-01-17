@@ -17,17 +17,16 @@ exports.subscribe_tournamentPlayers = function(req, res, next) {
 }
 
 //Lister toutes les équipes inscrites à un tournoi
-exports.subscribe_tournamentTeams = function(req, res, next) {
+exports.subscribe_tournamentTeams = function(req, res, next, data) {
     var idTournament = req.params.idTournament;
     connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, team.idTeam, team.teamName FROM user, tournament, team WHERE team.user_idUser = user.idUser AND tournament.idTournament= '" + idTournament + "'", function(err, result, fields) {
         if(err) { throw err; }
         else {
-            var playerData;
             Object.keys(result).forEach(function (key) {
                 rowIdTeam = result[key].idTeam;
-                playerData += getPlayersInTeam(rowIdTeam);
+                data += getPlayersInTeam(rowIdTeam);
             });
-            res.json(playerData);
+            res.json(data);
         }
     });
 }
