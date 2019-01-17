@@ -54,7 +54,11 @@ function insertPlayerIntoDB(idTeam, lastnameSubscriber, firstnameSubscriber) {
 function getIdTeamByDesc() {
     connectionOnline.query("SELECT idTeam FROM team ORDER BY idTeam DESC LIMIT 1", function (err, result, fields) {
         if(err) { throw err; }
-        else { return result; }
+        else {
+            Object.keys(result).forEach(function (key) {
+                return result[key].idTeam;
+            });
+        }
     });
 }
 
