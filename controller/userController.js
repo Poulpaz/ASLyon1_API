@@ -15,6 +15,20 @@ exports.users = function (req, res, next) {
     });
 }
 
+//Récupérer un utilisateur
+exports.getUser = function (req, res, next) {
+    var idUser = req.params.idUser;
+    var row;
+    connectionOnline.query("SELECT * FROM user WHERE idUser='" + idUser + "'", function (err, result, fields) {
+        if(err) { throw err; }
+        else {
+            Object.keys(result).forEach(function (key) { row = result[key]; });
+            if(row != null) { res.json(row); }
+            else { res.json({ message: "Utilisateur inexistant." }); }
+        }
+    });
+}
+
 //Login - Connexion
 exports.login = function (req, res, next) {
     var email = req.body.email;

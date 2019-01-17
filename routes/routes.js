@@ -6,7 +6,9 @@ module.exports = function(app) {
     var tournamentController = require('../controller/tournamentController');
     var offerController = require('../controller/offerController');
     var actuController = require('../controller/actuController');
+
     var subscribe_eventController = require('../controller/subscribe_eventController');
+    var subscribe_tournamentController = require('../controller/subscribe_tournamentController');
 
     /* -- Routes test - Debug -- */
     app.route('/debugMode').get(function (req, res, next) {
@@ -17,6 +19,8 @@ module.exports = function(app) {
     /* -- User routes -- */
     //Lister les comptes utilisateurs existants
     app.route('/api/users').get(userController.users);
+    //Récupérer un utilisateur
+    app.route('/api/user/:idUser').get(userController.getUser);
     //Login - Connexion
     app.route('/api/login').post(userController.login);
     //Signup - Inscription
@@ -69,7 +73,7 @@ module.exports = function(app) {
     app.route('/api/xml').get(actuController.listActuRss);
 
     /* -- Subscribe Event routes -- */
-    //Lister toutes les inscriptions à tout les événements
+    //Lister toutes les inscriptions à un événement
     app.route('/api/subscribe_event/:idEvent').get(subscribe_eventController.subscribe_event);
     //S'inscrire à un événement
     app.route('/api/newSubscribe_event').post(subscribe_eventController.addSubscribe_event);
@@ -77,4 +81,14 @@ module.exports = function(app) {
     app.route('/api/removeSubscribe_event').post(subscribe_eventController.deleteSubscribe_event);
     //Vérifier si un utilisateur est déjà inscrit à un événement
     app.route('/api/isSubscribeEvent').post(subscribe_eventController.isSubscribeEvent);
+
+    /* -- Subscribe Tournament routes -- */
+    //Lister toutes les inscriptions à un tournoi
+    app.route('/api/subscribe_tournament/:idTournament').get(subscribe_tournamentController.subscribe_tournament);
+    //S'inscrire à un tournoi
+    app.route('/api/newSubscribe_tournament').post(subscribe_tournamentController.addSubscribe_tournament);
+    //Se désinscrire d'un tournoi
+    app.route('/api/removeSubscribe_tournament').post(subscribe_tournamentController.deleteSubscribe_tournament);
+    //Vérifier si un utilisateur est déjà inscrit à un tournoi
+    app.route('/api/isSubscribeTournament').post(subscribe_tournamentController.isSubscribeTournament);
 }

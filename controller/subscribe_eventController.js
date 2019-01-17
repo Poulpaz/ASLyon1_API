@@ -7,7 +7,7 @@ var connectionOnline = mysql.createConnection({
     database: 'aslyon1_api'
 });
 
-//Lister toutes les inscriptions à tout les événements
+//Lister toutes les inscriptions à un événement
 exports.subscribe_event = function(req, res, next) {
     var idEvent = req.params.idEvent;
     connectionOnline.query("SELECT user.idUser, user.lastname, user.firstname, event.idEvent, event.title FROM subscribe_event, user, event WHERE subscribe_event.user_idUser = user.idUser AND subscribe_event.event_idEvent = event.idEvent AND event.idEvent= '" + idEvent + "'", function(err, result, fields) {
