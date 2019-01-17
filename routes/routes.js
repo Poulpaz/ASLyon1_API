@@ -86,9 +86,9 @@ module.exports = function(app) {
     //Lister toutes les inscriptions à un tournoi
     app.route('/api/subscribe_tournament/:idTournament').get(subscribe_tournamentController.subscribe_tournament);
     //S'inscrire à un tournoi
-    app.route('/api/newSubscribe_tournament').post(subscribe_tournamentController.addSubscribe_tournament);
+    //app.route('/api/newSubscribe_tournament').post(subscribe_tournamentController.addSubscribe_tournament);
     //Se désinscrire d'un tournoi
-    app.route('/api/removeSubscribe_tournament').post(subscribe_tournamentController.deleteSubscribe_tournament);
+    //app.route('/api/removeSubscribe_tournament').post(subscribe_tournamentController.deleteSubscribe_tournament);
     //Vérifier si un utilisateur est déjà inscrit à un tournoi
-    app.route('/api/isSubscribeTournament').post(subscribe_tournamentController.isSubscribeTournament);
+    //app.route('/api/isSubscribeTournament').post(subscribe_tournamentController.isSubscribeTournament);
 }
