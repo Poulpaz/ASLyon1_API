@@ -71,11 +71,12 @@ exports.addOffer = function (req, res, next) {
 exports.updateOffer = function (req, res, next) {
     var idOffer = req.body.idoffer;
     var title = replaceCharacters(req.body.title);
-    var date = req.body.date;
+    var startDate = req.body.startDate;
+    var endDate = req.body.endDate;
     var nbParticipants = req.body.nbParticipants;
     var price = req.body.price;
     var description = replaceCharacters(req.body.description);
-    connectionOnline.query("UPDATE offer SET title='" + title + "', date='" + date + "', nbParticipants='" + nbParticipants + "', price='" + price + "', description='" + description + "' WHERE idOffer='" + idOffer + "'", function (err, result, fields) {
+    connectionOnline.query("UPDATE offer SET title='" + title + "', startDate='" + startDate + "', endDate='" + endDate + "', nbParticipants='" + nbParticipants + "', price='" + price + "', description='" + description + "' WHERE idOffer='" + idOffer + "'", function (err, result, fields) {
         if (err) { throw err; }
         else { res.json({ message: "Les informations de l'offre promotionnelle ont été modifiées avec succès." }); }
     });
