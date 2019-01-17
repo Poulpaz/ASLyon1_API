@@ -50,10 +50,10 @@ exports.addSubscribe_tournament = function(req, res, next) {
     //var tournament_idTournament = req.body.tournament_idTournament;
     //createTeam(user_idUser, teamName);
     Object.keys(listTeamPlayers).forEach(function (key) {
-        var lastnameSubscriber = result[key].lastnameSubscriber;
-        var firstnameSubscriber = result[key].firstnameSubscriber;
+        var lastnameSubscriber = listTeamPlayers[key].lastnameSubscriber;
+        var firstnameSubscriber = listTeamPlayers[key].firstnameSubscriber;
         console.log(lastnameSubscriber + " " + firstnameSubscriber);
         //insertPlayerIntoDB(lastnameSubscriber, firstnameSubscriber);
     });
-    res.json( { message: document } );
+    res.json( { message: done } );
 }
