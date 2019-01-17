@@ -74,7 +74,7 @@ module.exports = function(app) {
     //S'inscrire à un événement
     app.route('/api/newSubscribe_event').post(subscribe_eventController.addSubscribe_event);
     //Se désinscrire d'un événement
-    app.route('/api/removeSubscribe_event').delete(subscribe_eventController.deleteSubscribe_event);
+    app.route('/api/removeSubscribe_event/:idUser/:idEvent').delete(subscribe_eventController.deleteSubscribe_event);
     //Vérifier si un utilisateur est déjà inscrit à un événement
     app.route('/api/isSubscribeEvent').post(subscribe_eventController.isSubscribeEvent);
 }

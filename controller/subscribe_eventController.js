@@ -28,8 +28,8 @@ exports.addSubscribe_event = function (req, res, next) {
 
 //Se désinscrire d'un événement
 exports.deleteSubscribe_event = function (req, res, next) {
-    var idUser = req.body.idUser;
-    var idEvent = req.body.idEvent;
+    var idUser = req.params.idUser;
+    var idEvent = req.params.idEvent;
     connectionOnline.query("DELETE FROM subscribe_event WHERE user_idUser= '" + idUser + "' AND event_idEvent= '" + idEvent + "'", function (err, result, fields) {
         if (err) { throw err; }
         else { res.json({ message: "Votre désinscription à bien été prise en compte." }); }
