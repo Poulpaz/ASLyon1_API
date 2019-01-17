@@ -70,6 +70,7 @@ exports.addSubscribe_tournament = function(req, res, next) {
     var tournament_idTournament = req.body.idTournament;
     createTeam(user_idUser, teamName);
     var idTeam = getIdTeamByDesc();
+    console.log(idTeam + "  idTeam............");
 
     console.log("teamName : " + teamName);
     console.log("user_idUser : " + user_idUser);
