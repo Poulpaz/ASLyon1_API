@@ -11,7 +11,7 @@ admin.initializeApp({
 exports.notificationEvent = function (eventTitle, idEvent) {
   var payload = {
     notification: {
-      title: "Nouvel évènement",
+      title: topic,
       body: eventTitle
     },
     data: {
