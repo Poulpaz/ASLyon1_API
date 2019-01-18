@@ -58,11 +58,14 @@ exports.notificationOffer = function (offerTitle, idOffer) {
 };
 
 //Notifier les utilisateurs d'une demande de bénévoles
-exports.sendNotification = function (titre, body) {
+exports.sendNotification = function (req, res, next) {
+  var title = req.body.title;
+  var description = req.body.description;
+
   var payload = {
     notification: {
-      title: titre,
-      body: body
+      title: title,
+      body: description
     }
   };
   var options = {
@@ -76,4 +79,5 @@ exports.sendNotification = function (titre, body) {
     .catch(function(error) {
       console.log("Error sending message:", error);
     });
+    res.json({ message: "Notification envoyée avec succès.\n" + title });
 };

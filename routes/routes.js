@@ -92,5 +92,5 @@ module.exports = function(app) {
     app.route('/api/subscribe_tournamentTeamPlayers/:idTeam').get(subscribe_tournamentController.subscribe_tournamentTeamsPlayers);
 
     /* -- Notification routes -- */
-    app.route('/api/sendNotification').get(notificationController.sendNotification);
+    app.route('/api/sendNotification').post(notificationController.sendNotification);
 }
