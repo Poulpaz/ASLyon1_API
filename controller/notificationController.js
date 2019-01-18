@@ -11,7 +11,7 @@ admin.initializeApp({
 exports.notificationEvent = function (eventTitle, idEvent) {
   var payload = {
     notification: {
-      title: topic,
+      title: "Nouvel événement",
       body: eventTitle
     },
     data: {
@@ -72,8 +72,11 @@ exports.sendNotification = function (req, res, next) {
       type: "notification"
     }
   };
+  var options = {
+    priority: "high"
+  }
   
-  admin.messaging().sendToTopic(topic, payload)
+  admin.messaging().sendToTopic(topic, payload, options)
     .then(function(response) {
       console.log("Successfully sent message:", response);
     })
