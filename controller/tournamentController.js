@@ -1,4 +1,5 @@
-var connectionOnline = require('../connexion/connexion');
+var connexion = require('../connexion/connexion');
+var connectionOnline = connexion.connectionOnline;
 
 function replaceCharacters(chn) {
     return chn.replace("\'", "\\'");
