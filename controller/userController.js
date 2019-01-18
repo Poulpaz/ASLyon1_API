@@ -1,4 +1,5 @@
-var connectionOnline = require('../connexion/connexion');
+var connexion = require('../connexion/connexion');
+var connectionOnline = connexion.getConnexion();
 
 //Lister les comptes utilisateurs existants
 exports.users = function (req, res, next) {

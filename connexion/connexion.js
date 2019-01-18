@@ -11,4 +11,6 @@ function getConnexion() {
     });
 }
 
-module.exports = { getConnexion() };
+module.exports = {
+    getConnexion
+};
