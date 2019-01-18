@@ -66,13 +66,14 @@ exports.sendNotification = function (req, res, next) {
     notification: {
       title: title,
       body: description
+    },
+    data: {
+      idNotif: String("Back Office"),
+      type: "notification"
     }
   };
-  var options = {
-    priority: "high"
-  }
   
-  admin.messaging().sendToTopic(topic, payload, options)
+  admin.messaging().sendToTopic(topic, payload)
     .then(function(response) {
       console.log("Successfully sent message:", response);
     })
