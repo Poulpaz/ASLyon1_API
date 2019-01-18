@@ -6,6 +6,7 @@ module.exports = function(app) {
     var tournamentController = require('../controller/tournamentController');
     var offerController = require('../controller/offerController');
     var actuController = require('../controller/actuController');
+    var notificationController = require('../controller/notificationController');
 
     var subscribe_eventController = require('../controller/subscribe_eventController');
     var subscribe_tournamentController = require('../controller/subscribe_tournamentController');
@@ -89,4 +90,7 @@ module.exports = function(app) {
     app.route('/api/subscribe_tournamentTeams/:idTournament').get(subscribe_tournamentController.subscribe_tournamentTeams);
     //Lister les joueurs d'une équipe
     app.route('/api/subscribe_tournamentTeamPlayers/:idTeam').get(subscribe_tournamentController.subscribe_tournamentTeamsPlayers);
+
+    /* -- Notification routes -- */
+    app.route('/api/sendNotification').get(notificationController.sendNotification);
 }

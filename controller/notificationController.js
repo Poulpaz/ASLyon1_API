@@ -56,3 +56,24 @@ exports.notificationOffer = function (offerTitle, idOffer) {
       console.log("Error sending message:", error);
     });
 };
+
+//Notifier les utilisateurs d'une demande de bénévoles
+exports.sendNotification = function (titre, body) {
+  var payload = {
+    notification: {
+      title: titre,
+      body: body
+    }
+  };
+  var options = {
+    priority: "high"
+  }
+  
+  admin.messaging().sendToTopic(topic, payload, options)
+    .then(function(response) {
+      console.log("Successfully sent message:", response);
+    })
+    .catch(function(error) {
+      console.log("Error sending message:", error);
+    });
+};
