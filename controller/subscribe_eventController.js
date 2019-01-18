@@ -1,4 +1,5 @@
-var connectionOnline = require('../connexion/connexion');
+var connexion = require('../connexion/connexion');
+var connectionOnline = connexion.connectionOnline;
 
 //Lister toutes les inscriptions à un événement
 exports.subscribe_event = function(req, res, next) {

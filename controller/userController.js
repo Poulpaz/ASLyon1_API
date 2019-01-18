@@ -1,5 +1,11 @@
-var connexion = require('../connexion/connexion');
-var connectionOnline = connexion.getConnexion();
+var mysql = require('mysql');
+var connectionOnline = mysql.createConnection({
+    // properties
+    host: 'db4free.net',
+    user: 'aslyon1',
+    password: 'cWqjRnYLFv84Vkr',
+    database: 'aslyon1_api'
+});
 
 //Lister les comptes utilisateurs existants
 exports.users = function (req, res, next) {
